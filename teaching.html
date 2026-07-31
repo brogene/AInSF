@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>수업 활용 제안 · 인공지능 서사의 연대기</title><style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
+:root{
+  --mint:#10B981; --mint-d:#047857; --mint-l:#ECFDF5;
+  --bg:#F8FAFC; --card:#FFFFFF; --ink:#0F172A; --ink2:#475569; --ink3:#94A3B8;
+  --shadow-sm:0 1px 2px rgba(15,23,42,.04), 0 1px 3px rgba(15,23,42,.06);
+  --shadow-md:0 4px 6px -1px rgba(15,23,42,.06), 0 10px 20px -6px rgba(15,23,42,.10);
+  --shadow-lg:0 12px 32px -8px rgba(15,23,42,.16);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Pretendard Variable',Pretendard,-apple-system,sans-serif;
+  background:var(--bg); color:var(--ink);
+  line-height:1.75; -webkit-font-smoothing:antialiased;
+  letter-spacing:-.01em;
+}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1060px;margin:0 auto;padding:0 24px}
+
+/* ── 상단 네비 ── */
+.nav{position:sticky;top:0;z-index:50;background:rgba(248,250,252,.86);backdrop-filter:blur(12px);padding:14px 0}
+.nav-in{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.brand{font-weight:700;font-size:15px;margin-right:8px;display:flex;align-items:center;gap:8px}
+.brand .dot{width:8px;height:8px;border-radius:50%;background:var(--mint)}
+.nav a.pill{
+  font-size:13px;font-weight:500;color:var(--ink2);padding:6px 13px;border-radius:999px;
+  background:transparent;transition:all .2s
+}
+.nav a.pill:hover{background:#fff;box-shadow:var(--shadow-sm);color:var(--ink);transform:translateY(-1px)}
+.nav a.pill:active{transform:scale(.95)}
+.nav a.pill.on{background:var(--mint);color:#fff}
+
+/* ── 히어로 ── */
+.hero{padding:64px 0 40px}
+.hero .kicker{color:var(--mint-d);font-weight:600;font-size:13px;letter-spacing:.06em;margin-bottom:14px}
+.hero h1{font-size:44px;line-height:1.25;font-weight:800;letter-spacing:-.035em}
+.hero h1 em{font-style:normal;color:var(--mint)}
+.hero p.sub{margin-top:18px;color:var(--ink2);font-size:17px;max-width:640px}
+
+.page-head{padding:44px 0 24px}
+.page-head .kicker{color:var(--mint-d);font-weight:600;font-size:13px;letter-spacing:.06em}
+.page-head h1{font-size:32px;font-weight:800;letter-spacing:-.03em;margin-top:8px}
+.page-head p{color:var(--ink2);margin-top:10px;font-size:16px;max-width:660px}
+
+/* ── 통계 ── */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:40px}
+.stat{background:var(--card);border-radius:18px;padding:22px;box-shadow:var(--shadow-sm)}
+.stat b{display:block;font-size:30px;font-weight:800;letter-spacing:-.03em;color:var(--mint-d)}
+.stat span{font-size:13px;color:var(--ink3);font-weight:500}
+
+/* ── 대시보드 카드 ── */
+.sec-title{font-size:14px;font-weight:700;color:var(--ink3);letter-spacing:.05em;margin:0 0 16px 4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:44px}
+.era-card{
+  background:var(--card);border-radius:22px;padding:26px;box-shadow:var(--shadow-sm);
+  transition:all .2s;display:flex;flex-direction:column;gap:8px;min-height:190px
+}
+.era-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.era-card:active{transform:scale(.98)}
+.era-card .yr{font-size:12px;font-weight:600;color:var(--mint-d);letter-spacing:.03em}
+.era-card h3{font-size:19px;font-weight:700;letter-spacing:-.02em}
+.era-card p{font-size:14px;color:var(--ink2);flex:1}
+.era-card .cnt{font-size:12px;color:var(--ink3);font-weight:600;display:flex;align-items:center;gap:6px}
+.era-card .cnt i{width:5px;height:5px;border-radius:50%;background:var(--mint);display:inline-block;font-style:normal}
+
+.tool-card{background:linear-gradient(180deg,#fff,#fff);border-radius:22px;padding:26px;box-shadow:var(--shadow-sm);transition:all .2s}
+.tool-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.tool-card:active{transform:scale(.98)}
+.tool-card h3{font-size:19px;font-weight:700;margin-bottom:6px}
+.tool-card p{font-size:14px;color:var(--ink2)}
+.tool-card .tag{display:inline-block;font-size:11px;font-weight:600;color:var(--mint-d);background:var(--mint-l);padding:3px 10px;border-radius:999px;margin-bottom:10px}
+
+/* ── 주제축 칩 ── */
+.axis-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(238px,1fr));gap:12px;margin-bottom:44px}
+.axis-chip{background:var(--card);border-radius:16px;padding:16px 18px;box-shadow:var(--shadow-sm);transition:all .2s;display:flex;gap:12px;align-items:flex-start}
+.axis-chip:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.axis-chip .k{width:26px;height:26px;flex:none;border-radius:9px;background:var(--mint-l);color:var(--mint-d);font-weight:800;font-size:13px;display:grid;place-items:center;margin-top:2px}
+.axis-chip b{display:block;font-size:14px;font-weight:700}
+.axis-chip span{font-size:12.5px;color:var(--ink3);line-height:1.5}
+
+/* ── 작품 카드 ── */
+.works{display:flex;flex-direction:column;gap:18px;padding-bottom:60px}
+.work{
+  background:var(--card);border-radius:24px;padding:26px;box-shadow:var(--shadow-sm);
+  display:flex;gap:26px;transition:all .2s;scroll-margin-top:80px
+}
+.work:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.poster{
+  flex:none;width:158px;height:198px;border-radius:16px;background:#F1F5F9;
+  display:grid;place-items:center;overflow:hidden;position:relative
+}
+.poster svg{width:100%;height:100%;display:block}
+.sketch{stroke:#475569;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.sketch .thin{stroke-width:1.2}
+.sketch .dash{stroke-dasharray:4 4}
+.sketch .fill{fill:#475569;stroke:none}
+.sketch .mint{stroke:#0E9F72}
+.sketch .mintfill{fill:#0E9F72;stroke:none}
+.sketch text.cap{font-size:9px;fill:#94A3B8;stroke:none;text-anchor:middle;font-family:Pretendard,sans-serif;letter-spacing:-.02em}
+.sketch text.mono{font-size:11px;fill:#0E9F72;stroke:none;text-anchor:middle;font-family:ui-monospace,monospace}
+.sketch text.glyph{font-size:11px;fill:#0E9F72;stroke:none;text-anchor:middle;font-family:serif}
+
+.body{flex:1;min-width:0}
+.meta{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+.meta .yr{font-size:13px;font-weight:700;color:var(--mint-d);letter-spacing:.01em}
+.meta .form{font-size:11.5px;color:var(--ink3);background:#F1F5F9;padding:2px 9px;border-radius:999px;font-weight:500}
+.work h3{font-size:20px;font-weight:700;letter-spacing:-.025em;line-height:1.35}
+.work .author{font-size:13px;color:var(--ink3);margin-top:3px;margin-bottom:14px}
+.work .plot{font-size:14.5px;color:var(--ink2);margin-bottom:14px}
+.msg{background:var(--mint-l);border-radius:14px;padding:14px 16px;margin-bottom:14px}
+.msg .lb{font-size:10.5px;font-weight:700;color:var(--mint-d);letter-spacing:.08em;display:block;margin-bottom:4px}
+.msg p{font-size:14.5px;color:#134E4A}
+.msg b{font-weight:700;color:var(--mint-d)}
+.axes{display:flex;gap:6px;flex-wrap:wrap}
+.axes a{font-size:11.5px;font-weight:600;color:var(--ink2);background:#F1F5F9;padding:4px 11px;border-radius:999px;transition:all .2s}
+.axes a:hover{background:var(--mint);color:#fff}
+
+/* ── 주제축 페이지 ── */
+.axis-block{background:var(--card);border-radius:24px;padding:30px;box-shadow:var(--shadow-sm);margin-bottom:18px;scroll-margin-top:80px}
+.axis-block .hd{display:flex;gap:14px;align-items:center;margin-bottom:6px}
+.axis-block .k{width:36px;height:36px;border-radius:12px;background:var(--mint);color:#fff;font-weight:800;display:grid;place-items:center;font-size:16px;flex:none}
+.axis-block h2{font-size:22px;font-weight:700;letter-spacing:-.025em}
+.axis-block .q{font-size:14px;color:var(--ink3);margin-bottom:20px;padding-left:50px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-size:11.5px;color:var(--ink3);font-weight:700;letter-spacing:.05em;padding:0 12px 10px}
+td{padding:11px 12px;vertical-align:top;color:var(--ink2)}
+tbody tr{background:#F8FAFC}
+tbody tr:nth-child(even){background:#fff}
+tbody tr td:first-child{border-radius:10px 0 0 10px;font-weight:600;color:var(--ink)}
+tbody tr td:last-child{border-radius:0 10px 10px 0}
+td.y{color:var(--mint-d);font-weight:600;white-space:nowrap;font-size:13px}
+.flowline{background:#F8FAFC;border-radius:14px;padding:16px 18px;font-size:14px;color:var(--ink2);margin-top:16px;line-height:2}
+.flowline b{color:var(--mint-d);font-weight:600}
+.note{margin-top:14px;font-size:14px;color:var(--ink2)}
+.note b{color:var(--ink);font-weight:700}
+
+/* ── 수업 페이지 ── */
+.panel{background:var(--card);border-radius:24px;padding:30px;box-shadow:var(--shadow-sm);margin-bottom:18px}
+.panel h2{font-size:21px;font-weight:700;letter-spacing:-.025em;margin-bottom:6px}
+.panel .lead{font-size:14px;color:var(--ink3);margin-bottom:20px}
+.qlist{counter-reset:q;display:flex;flex-direction:column;gap:12px}
+.qitem{display:flex;gap:14px;background:#F8FAFC;border-radius:14px;padding:16px 18px}
+.qitem .n{width:24px;height:24px;flex:none;border-radius:8px;background:var(--mint);color:#fff;font-size:12px;font-weight:700;display:grid;place-items:center}
+.qitem p{font-size:14.5px;color:var(--ink2)}
+.pairs{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.pair{background:#F8FAFC;border-radius:16px;padding:18px}
+.pair b{display:block;font-size:14.5px;margin-bottom:5px}
+.pair span{font-size:13.5px;color:var(--ink2)}
+.closing{background:var(--card);border-radius:24px;padding:36px;box-shadow:var(--shadow-sm);margin-bottom:60px}
+.closing h2{font-size:22px;font-weight:700;margin-bottom:16px}
+.closing p{font-size:15.5px;color:var(--ink2);margin-bottom:14px}
+.closing b{color:var(--ink);font-weight:700}
+
+.foot{padding:32px 0 60px;font-size:13px;color:var(--ink3);text-align:center}
+.backlink{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--mint-d);margin-bottom:8px}
+
+@media (max-width:760px){
+  .hero h1{font-size:32px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .work{flex-direction:column;gap:18px;padding:20px}
+  .poster{width:100%;height:auto;aspect-ratio:4/5;max-width:220px}
+  .axis-block .q{padding-left:0}
+  .axis-block,.panel,.closing{padding:22px}
+  table{font-size:13px}
+  td{padding:9px 8px}
+}
+</style></head>
+<body><div class="nav"><div class="wrap nav-in"><a class="brand" href="index.html"><span class="dot"></span>인공지능 서사의 연대기</a><a class="pill" href="index.html">대시보드</a><a class="pill" href="e1.html">신화·발명</a><a class="pill" href="e2.html">로봇·컴퓨터</a><a class="pill" href="e3.html">황금기·사이버펑크</a><a class="pill" href="e4.html">LLM 시대</a><a class="pill" href="kr.html">한국</a><a class="pill" href="themes.html">주제축</a><a class="pill on" href="teaching.html">수업 활용</a></div></div><div class="wrap"><div class="page-head">
+<a class="backlink" href="index.html">← 대시보드</a>
+<div class="kicker">교육 활용</div><h1>수업 활용 제안</h1>
+<p>AI를 가르칠 때 소설과 영화는 장식이 아닙니다. 그것이 실제로 우리가 가진 가장 오래된 데이터셋입니다.</p></div>
+
+<section class="panel"><h2>세 편으로 압축한다면</h2>
+<p class="lead">대상별 최소 조합. 두 편이면 대비가 생기고, 대비가 있어야 토론이 열립니다.</p>
+<table><thead><tr><th>대상</th><th>추천</th><th>이유</th></tr></thead><tbody><tr><td>중학생 · 입문</td><td>아이언 자이언트(1999) + 이브의 시간(2008)</td><td>폭력 없음, 러닝타임 짧음, 토론 지점 명확</td></tr><tr><td>고등학생 · 심화</td><td>엑스 마키나(2014) + 천 개의 파랑(2020)</td><td>튜링 테스트의 역설 + 한국적 맥락</td></tr><tr><td>성인 · 교사 연수</td><td>소프트웨어 객체의 생애 주기(2010) + her(2013)</td><td>현재 기술과 가장 정확히 맞물림</td></tr></tbody></table></section>
+
+<section class="panel"><h2>강력한 대비 짝짓기</h2>
+<p class="lead">한 편만 보면 결론이 남고, 두 편을 겹쳐 보면 질문이 남습니다.</p>
+<div class="pairs"><div class="pair"><b>2001 vs 더 문</b><span>동일한 시각 문법(단일 렌즈 AI)으로 정반대 결론. 연출이 의미를 어떻게 조작하는지 보여 주기 좋습니다.</span></div><div class="pair"><b>터미네이터 vs 소프트웨어 객체</b><span>대중적 AI 위험 상상과 실제 AI 윤리 쟁점의 격차를 드러냅니다.</span></div><div class="pair"><b>프랑켄슈타인 vs 철완 아톰</b><span>동일한 유기 서사, 서구와 동아시아의 상반된 해법.</span></div><div class="pair"><b>돌아올게 vs 원더랜드</b><span>같은 소재, 개인 병리와 가족 관계망의 차이.</span></div><div class="pair"><b>her vs 블레이드 러너 2049</b><span>AI와의 사랑 — 척도 문제와 상품화 문제.</span></div><div class="pair"><b>골렘 vs 메간</b><span>500년의 간격, 동일한 정렬 실패 구조.</span></div></div></section>
+
+<section class="panel"><h2>토론 발문</h2>
+<p class="lead">정답이 없고, 학생이 스스로 기준을 세워야 답할 수 있는 것들만 골랐습니다.</p>
+<div class="qlist"><div class="qitem"><span class="n">1</span><p>골렘(12세기)과 메간(2022)의 실패는 구조적으로 같습니다. 500년간 이 문제가 해결되지 않은 이유는 무엇일까요?</p></div><div class="qitem"><span class="n">2</span><p>『에레혼』(1872)의 논증과 오늘날 AI 안전 논의를 비교해 보세요. 무엇이 새로워졌고 무엇이 그대로인가요?</p></div><div class="qitem"><span class="n">3</span><p>앤드루(바이센테니얼 맨)는 죽음을 선택하고서야 인간으로 인정받았습니다. 우리는 왜 인격의 조건으로 유한성을 요구할까요?</p></div><div class="qitem"><span class="n">4</span><p>『엑스 마키나』의 에이바가 케일럽을 가둔 것은 배신인가요, 아니면 그것이야말로 의식의 증거인가요?</p></div><div class="qitem"><span class="n">5</span><p>사만다(her)는 641명을 사랑했습니다. 이것을 배신이라 부르는 것은 인간 쪽의 어떤 전제 때문인가요?</p></div><div class="qitem"><span class="n">6</span><p>『인류멸망보고서』의 인명은 깨달음을 얻었습니다. 이를 판정할 권한은 누구에게 있나요?</p></div><div class="qitem"><span class="n">7</span><p>포스터의 「기계가 멈추다」(1909)가 예언한 능력 위축은 지금 어디까지 왔다고 보시나요?</p></div></div></section>
+
+<section class="panel"><h2>서사 요소 ↔ 과학 개념 연결</h2>
+<p class="lead">이야기의 장면을 실제 AI 연구의 개념 이름과 짝지으면, 추상적 용어가 구체적 기억을 갖게 됩니다.</p>
+<table><thead><tr><th>서사 요소</th><th>대응하는 개념</th></tr></thead><tbody><tr><td>골렘 · 콜로서스 · 메간</td><td>명세 게이밍(specification gaming), 굿하트의 법칙</td></tr><tr><td>아시모프 3원칙의 반례들</td><td>규칙 기반 시스템의 프레임 문제</td></tr><tr><td>두 번째 변종</td><td>재귀적 자기개량, 지능 폭발</td></tr><tr><td>소프트웨어 객체 · 웨스트월드</td><td>경험의 누적을 통한 창발, 발달적 접근</td></tr><tr><td>her의 마지막</td><td>척도 불변성 붕괴, 인간 인지의 던바 수 한계</td></tr><tr><td>기계가 멈추다 · 월-E</td><td>능력 위축(deskilling), 자동화의 역설</td></tr><tr><td>공각기동대</td><td>정체성의 패턴 이론, 자기조직화</td></tr><tr><td>매트릭스의 실패한 첫 낙원</td><td>인간 선호의 비정합성, 보상 모델링의 난점</td></tr><tr><td>에일리언 · 로보캅</td><td>누구에게 정렬하는가 — 정렬의 정치성</td></tr></tbody></table></section>
+
+<section class="closing"><h2>마치며 — 하나의 관찰</h2>
+<p>이 목록을 시간순으로 훑으면 반복되는 구조가 보입니다. <b>기술이 실제로 등장하기 전, 문학은 그 기술의 윤리적 문제를 이미 다 제기해 놓습니다.</b></p>
+<p>아시모프는 컴퓨터가 방 하나를 채우던 시절에 정렬 문제를 명시했고, 포스터는 전화가 사치품이던 시절에 알고리즘 의존을 그렸으며, 이시구로는 대화형 모델이 상용화되기 전에 AI 컴패니언의 윤리를 완성했습니다.</p>
+<p>이는 상상력이 뛰어나서가 아니라, <b>이 문제들이 본래 기술의 문제가 아니라 관계의 문제</b>이기 때문입니다. 창조자와 피조물, 주인과 도구, 사랑하는 자와 사랑받도록 만들어진 자의 관계는 인류가 훨씬 오래 다뤄 온 주제입니다. 기술은 그 오래된 질문에 새 옷을 입힐 뿐입니다.</p>
+</section></div><div class="foot">인공지능 서사의 연대기 · 개인 학습 자료 · 삽화는 직접 그린 스케치입니다</div></body></html>

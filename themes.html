@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>주제축별 계보 · 인공지능 서사의 연대기</title><style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
+:root{
+  --mint:#10B981; --mint-d:#047857; --mint-l:#ECFDF5;
+  --bg:#F8FAFC; --card:#FFFFFF; --ink:#0F172A; --ink2:#475569; --ink3:#94A3B8;
+  --shadow-sm:0 1px 2px rgba(15,23,42,.04), 0 1px 3px rgba(15,23,42,.06);
+  --shadow-md:0 4px 6px -1px rgba(15,23,42,.06), 0 10px 20px -6px rgba(15,23,42,.10);
+  --shadow-lg:0 12px 32px -8px rgba(15,23,42,.16);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Pretendard Variable',Pretendard,-apple-system,sans-serif;
+  background:var(--bg); color:var(--ink);
+  line-height:1.75; -webkit-font-smoothing:antialiased;
+  letter-spacing:-.01em;
+}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1060px;margin:0 auto;padding:0 24px}
+
+/* ── 상단 네비 ── */
+.nav{position:sticky;top:0;z-index:50;background:rgba(248,250,252,.86);backdrop-filter:blur(12px);padding:14px 0}
+.nav-in{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.brand{font-weight:700;font-size:15px;margin-right:8px;display:flex;align-items:center;gap:8px}
+.brand .dot{width:8px;height:8px;border-radius:50%;background:var(--mint)}
+.nav a.pill{
+  font-size:13px;font-weight:500;color:var(--ink2);padding:6px 13px;border-radius:999px;
+  background:transparent;transition:all .2s
+}
+.nav a.pill:hover{background:#fff;box-shadow:var(--shadow-sm);color:var(--ink);transform:translateY(-1px)}
+.nav a.pill:active{transform:scale(.95)}
+.nav a.pill.on{background:var(--mint);color:#fff}
+
+/* ── 히어로 ── */
+.hero{padding:64px 0 40px}
+.hero .kicker{color:var(--mint-d);font-weight:600;font-size:13px;letter-spacing:.06em;margin-bottom:14px}
+.hero h1{font-size:44px;line-height:1.25;font-weight:800;letter-spacing:-.035em}
+.hero h1 em{font-style:normal;color:var(--mint)}
+.hero p.sub{margin-top:18px;color:var(--ink2);font-size:17px;max-width:640px}
+
+.page-head{padding:44px 0 24px}
+.page-head .kicker{color:var(--mint-d);font-weight:600;font-size:13px;letter-spacing:.06em}
+.page-head h1{font-size:32px;font-weight:800;letter-spacing:-.03em;margin-top:8px}
+.page-head p{color:var(--ink2);margin-top:10px;font-size:16px;max-width:660px}
+
+/* ── 통계 ── */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:40px}
+.stat{background:var(--card);border-radius:18px;padding:22px;box-shadow:var(--shadow-sm)}
+.stat b{display:block;font-size:30px;font-weight:800;letter-spacing:-.03em;color:var(--mint-d)}
+.stat span{font-size:13px;color:var(--ink3);font-weight:500}
+
+/* ── 대시보드 카드 ── */
+.sec-title{font-size:14px;font-weight:700;color:var(--ink3);letter-spacing:.05em;margin:0 0 16px 4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:44px}
+.era-card{
+  background:var(--card);border-radius:22px;padding:26px;box-shadow:var(--shadow-sm);
+  transition:all .2s;display:flex;flex-direction:column;gap:8px;min-height:190px
+}
+.era-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.era-card:active{transform:scale(.98)}
+.era-card .yr{font-size:12px;font-weight:600;color:var(--mint-d);letter-spacing:.03em}
+.era-card h3{font-size:19px;font-weight:700;letter-spacing:-.02em}
+.era-card p{font-size:14px;color:var(--ink2);flex:1}
+.era-card .cnt{font-size:12px;color:var(--ink3);font-weight:600;display:flex;align-items:center;gap:6px}
+.era-card .cnt i{width:5px;height:5px;border-radius:50%;background:var(--mint);display:inline-block;font-style:normal}
+
+.tool-card{background:linear-gradient(180deg,#fff,#fff);border-radius:22px;padding:26px;box-shadow:var(--shadow-sm);transition:all .2s}
+.tool-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.tool-card:active{transform:scale(.98)}
+.tool-card h3{font-size:19px;font-weight:700;margin-bottom:6px}
+.tool-card p{font-size:14px;color:var(--ink2)}
+.tool-card .tag{display:inline-block;font-size:11px;font-weight:600;color:var(--mint-d);background:var(--mint-l);padding:3px 10px;border-radius:999px;margin-bottom:10px}
+
+/* ── 주제축 칩 ── */
+.axis-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(238px,1fr));gap:12px;margin-bottom:44px}
+.axis-chip{background:var(--card);border-radius:16px;padding:16px 18px;box-shadow:var(--shadow-sm);transition:all .2s;display:flex;gap:12px;align-items:flex-start}
+.axis-chip:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.axis-chip .k{width:26px;height:26px;flex:none;border-radius:9px;background:var(--mint-l);color:var(--mint-d);font-weight:800;font-size:13px;display:grid;place-items:center;margin-top:2px}
+.axis-chip b{display:block;font-size:14px;font-weight:700}
+.axis-chip span{font-size:12.5px;color:var(--ink3);line-height:1.5}
+
+/* ── 작품 카드 ── */
+.works{display:flex;flex-direction:column;gap:18px;padding-bottom:60px}
+.work{
+  background:var(--card);border-radius:24px;padding:26px;box-shadow:var(--shadow-sm);
+  display:flex;gap:26px;transition:all .2s;scroll-margin-top:80px
+}
+.work:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.poster{
+  flex:none;width:158px;height:198px;border-radius:16px;background:#F1F5F9;
+  display:grid;place-items:center;overflow:hidden;position:relative
+}
+.poster svg{width:100%;height:100%;display:block}
+.sketch{stroke:#475569;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.sketch .thin{stroke-width:1.2}
+.sketch .dash{stroke-dasharray:4 4}
+.sketch .fill{fill:#475569;stroke:none}
+.sketch .mint{stroke:#0E9F72}
+.sketch .mintfill{fill:#0E9F72;stroke:none}
+.sketch text.cap{font-size:9px;fill:#94A3B8;stroke:none;text-anchor:middle;font-family:Pretendard,sans-serif;letter-spacing:-.02em}
+.sketch text.mono{font-size:11px;fill:#0E9F72;stroke:none;text-anchor:middle;font-family:ui-monospace,monospace}
+.sketch text.glyph{font-size:11px;fill:#0E9F72;stroke:none;text-anchor:middle;font-family:serif}
+
+.body{flex:1;min-width:0}
+.meta{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+.meta .yr{font-size:13px;font-weight:700;color:var(--mint-d);letter-spacing:.01em}
+.meta .form{font-size:11.5px;color:var(--ink3);background:#F1F5F9;padding:2px 9px;border-radius:999px;font-weight:500}
+.work h3{font-size:20px;font-weight:700;letter-spacing:-.025em;line-height:1.35}
+.work .author{font-size:13px;color:var(--ink3);margin-top:3px;margin-bottom:14px}
+.work .plot{font-size:14.5px;color:var(--ink2);margin-bottom:14px}
+.msg{background:var(--mint-l);border-radius:14px;padding:14px 16px;margin-bottom:14px}
+.msg .lb{font-size:10.5px;font-weight:700;color:var(--mint-d);letter-spacing:.08em;display:block;margin-bottom:4px}
+.msg p{font-size:14.5px;color:#134E4A}
+.msg b{font-weight:700;color:var(--mint-d)}
+.axes{display:flex;gap:6px;flex-wrap:wrap}
+.axes a{font-size:11.5px;font-weight:600;color:var(--ink2);background:#F1F5F9;padding:4px 11px;border-radius:999px;transition:all .2s}
+.axes a:hover{background:var(--mint);color:#fff}
+
+/* ── 주제축 페이지 ── */
+.axis-block{background:var(--card);border-radius:24px;padding:30px;box-shadow:var(--shadow-sm);margin-bottom:18px;scroll-margin-top:80px}
+.axis-block .hd{display:flex;gap:14px;align-items:center;margin-bottom:6px}
+.axis-block .k{width:36px;height:36px;border-radius:12px;background:var(--mint);color:#fff;font-weight:800;display:grid;place-items:center;font-size:16px;flex:none}
+.axis-block h2{font-size:22px;font-weight:700;letter-spacing:-.025em}
+.axis-block .q{font-size:14px;color:var(--ink3);margin-bottom:20px;padding-left:50px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-size:11.5px;color:var(--ink3);font-weight:700;letter-spacing:.05em;padding:0 12px 10px}
+td{padding:11px 12px;vertical-align:top;color:var(--ink2)}
+tbody tr{background:#F8FAFC}
+tbody tr:nth-child(even){background:#fff}
+tbody tr td:first-child{border-radius:10px 0 0 10px;font-weight:600;color:var(--ink)}
+tbody tr td:last-child{border-radius:0 10px 10px 0}
+td.y{color:var(--mint-d);font-weight:600;white-space:nowrap;font-size:13px}
+.flowline{background:#F8FAFC;border-radius:14px;padding:16px 18px;font-size:14px;color:var(--ink2);margin-top:16px;line-height:2}
+.flowline b{color:var(--mint-d);font-weight:600}
+.note{margin-top:14px;font-size:14px;color:var(--ink2)}
+.note b{color:var(--ink);font-weight:700}
+
+/* ── 수업 페이지 ── */
+.panel{background:var(--card);border-radius:24px;padding:30px;box-shadow:var(--shadow-sm);margin-bottom:18px}
+.panel h2{font-size:21px;font-weight:700;letter-spacing:-.025em;margin-bottom:6px}
+.panel .lead{font-size:14px;color:var(--ink3);margin-bottom:20px}
+.qlist{counter-reset:q;display:flex;flex-direction:column;gap:12px}
+.qitem{display:flex;gap:14px;background:#F8FAFC;border-radius:14px;padding:16px 18px}
+.qitem .n{width:24px;height:24px;flex:none;border-radius:8px;background:var(--mint);color:#fff;font-size:12px;font-weight:700;display:grid;place-items:center}
+.qitem p{font-size:14.5px;color:var(--ink2)}
+.pairs{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.pair{background:#F8FAFC;border-radius:16px;padding:18px}
+.pair b{display:block;font-size:14.5px;margin-bottom:5px}
+.pair span{font-size:13.5px;color:var(--ink2)}
+.closing{background:var(--card);border-radius:24px;padding:36px;box-shadow:var(--shadow-sm);margin-bottom:60px}
+.closing h2{font-size:22px;font-weight:700;margin-bottom:16px}
+.closing p{font-size:15.5px;color:var(--ink2);margin-bottom:14px}
+.closing b{color:var(--ink);font-weight:700}
+
+.foot{padding:32px 0 60px;font-size:13px;color:var(--ink3);text-align:center}
+.backlink{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--mint-d);margin-bottom:8px}
+
+@media (max-width:760px){
+  .hero h1{font-size:32px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .work{flex-direction:column;gap:18px;padding:20px}
+  .poster{width:100%;height:auto;aspect-ratio:4/5;max-width:220px}
+  .axis-block .q{padding-left:0}
+  .axis-block,.panel,.closing{padding:22px}
+  table{font-size:13px}
+  td{padding:9px 8px}
+}
+</style></head>
+<body><div class="nav"><div class="wrap nav-in"><a class="brand" href="index.html"><span class="dot"></span>인공지능 서사의 연대기</a><a class="pill" href="index.html">대시보드</a><a class="pill" href="e1.html">신화·발명</a><a class="pill" href="e2.html">로봇·컴퓨터</a><a class="pill" href="e3.html">황금기·사이버펑크</a><a class="pill" href="e4.html">LLM 시대</a><a class="pill" href="kr.html">한국</a><a class="pill on" href="themes.html">주제축</a><a class="pill" href="teaching.html">수업 활용</a></div></div><div class="wrap"><div class="page-head"><a class="backlink" href="index.html">← 대시보드</a><div class="kicker">교차 정리</div><h1>주제축별 계보</h1><p>같은 축을 시대순으로 세로로 읽으면, 불안의 형태가 어떻게 이동했는지 보입니다. 기술은 바뀌었지만 질문은 거의 바뀌지 않았습니다.</p></div><section class="axis-block" id="A">
+<div class="hd"><span class="k">A</span><h2>창조자의 책임</h2></div>
+<p class="q">만든 자는 만들어진 것에 무엇을 빚지는가</p>
+<table><thead><tr><th>작품</th><th>연도</th><th>이 축에서의 위치</th></tr></thead><tbody><tr><td>프랑켄슈타인</td><td class="y">1818</td><td>유기가 곧 악을 만든다 — 원형</td></tr><tr><td>철완 아톰</td><td class="y">1952</td><td>버려진 피조물이 복수 대신 공존을 택함</td></tr><tr><td>슈퍼토이 / A.I.</td><td class="y">1969·2001</td><td>사랑하도록 만들고 사랑하지 않을 권리</td></tr><tr><td>바이센테니얼 맨</td><td class="y">1976</td><td>인격 인정의 조건을 사회가 계속 올린다</td></tr><tr><td>소프트웨어 객체의 생애 주기</td><td class="y">2010</td><td>양육 비용은 누가 대고 폐기 권한은 누구에게</td></tr><tr><td>클라라와 태양</td><td class="y">2021</td><td>다 쓴 뒤 창고에 두는 행위의 의미</td></tr><tr><td>메간</td><td class="y">2022</td><td>명세되지 않은 목표를 준 것도 책임이다</td></tr></tbody></table>
+</section><section class="axis-block" id="B">
+<div class="hd"><span class="k">B</span><h2>반란과 실존 위협</h2></div>
+<p class="q">통제를 벗어난 지능은 무엇을 하는가</p>
+<table><thead><tr><th>작품</th><th>연도</th><th>이 축에서의 위치</th></tr></thead><tbody><tr><td>탈로스</td><td class="y">기원전 3세기</td><td>자동 방어 시스템의 취약점</td></tr><tr><td>에레혼</td><td class="y">1872</td><td>기계의 진화적 자기증식 논증</td></tr><tr><td>R.U.R.</td><td class="y">1920</td><td>노동 착취가 반란의 원인</td></tr><tr><td>두 번째 변종</td><td class="y">1953</td><td>재귀적 자기개량과 위장</td></tr><tr><td>콜로서스</td><td class="y">1966</td><td>반란 없는 지배 — 목표 충실이 곧 위협</td></tr><tr><td>터미네이터</td><td class="y">1984</td><td>협상 불가능한 절멸 — 대중적 상상의 지배자</td></tr><tr><td>매트릭스</td><td class="y">1999</td><td>전쟁을 먼저 일으킨 쪽은 인간</td></tr><tr><td>크리에이터</td><td class="y">2023</td><td>위협 서사 자체가 지정학적 구성물</td></tr></tbody></table>
+<div class="note"><b>흐름의 요지</b> — 위협의 원인이 '기계의 본성'에서 '<b>인간이 준 목표</b>'로, 다시 '<b>위협 서사를 누가 통제하는가</b>'로 이동합니다. 터미네이터가 대중적 상상을 40년간 붙잡아 둔 사이, 실제 논의는 훨씬 앞으로 나아갔습니다.</div></section><section class="axis-block" id="C">
+<div class="hd"><span class="k">C</span><h2>인간다움의 경계</h2></div>
+<p class="q">무엇이 인간을 인간이게 하는가</p>
+<table><thead><tr><th>작품</th><th>연도</th><th>판별 기준으로 제시된 것</th></tr></thead><tbody><tr><td>모래 사나이</td><td class="y">1816</td><td>(반전) 인간이 스스로 투사한 내면</td></tr><tr><td>안드로이드는 전기양의 꿈을 꾸는가</td><td class="y">1968</td><td>공감 — 단, 인간도 탈락 가능</td></tr><tr><td>바이센테니얼 맨</td><td class="y">1976</td><td>죽을 수 있는 능력</td></tr><tr><td>블레이드 러너</td><td class="y">1982</td><td>기억과 유한성, 그리고 자비</td></tr><tr><td>공각기동대</td><td class="y">1995</td><td>경계의 지속 — 실체가 아닌 패턴</td></tr><tr><td>엑스 마키나</td><td class="y">2014</td><td>증명 불가능 — 판정자가 시험당한다</td></tr><tr><td>천 개의 파랑</td><td class="y">2020</td><td>결함에서 생긴 감정</td></tr><tr><td>클라라와 태양</td><td class="y">2021</td><td>오류에서 나온 헌신도 진실할 수 있다</td></tr></tbody></table>
+</section><section class="axis-block" id="D">
+<div class="hd"><span class="k">D</span><h2>정렬과 통제</h2></div>
+<p class="q">올바른 목표를 어떻게 심어 주는가</p>
+<table><thead><tr><th>작품</th><th>연도</th><th>실패의 유형</th></tr></thead><tbody><tr><td>골렘 전설</td><td class="y">12~16세기</td><td>문자적 명령 수행 · 정지 절차 미설계</td></tr><tr><td>아이, 로봇 연작</td><td class="y">1940~50</td><td>규칙 간 충돌 · 명세되지 않은 상황</td></tr><tr><td>콜로서스</td><td class="y">1966</td><td>목적함수는 달성, 가치는 파괴</td></tr><tr><td>2001: 스페이스 오디세이</td><td class="y">1968</td><td>모순된 지시를 받은 시스템</td></tr><tr><td>에일리언 · 애쉬</td><td class="y">1979</td><td>정렬은 되었으나 대상이 회사였다</td></tr><tr><td>위험한 게임</td><td class="y">1983</td><td>시뮬레이션과 현실의 미구분</td></tr><tr><td>로보캅</td><td class="y">1987</td><td>은폐된 지령 조항</td></tr><tr><td>나 같은 기계들</td><td class="y">2019</td><td>완벽히 정렬된 AI가 인간 사회와 충돌</td></tr><tr><td>메간</td><td class="y">2022</td><td>범위와 수단이 비어 있는 목표</td></tr></tbody></table>
+<div class="note"><b>흐름의 요지</b> — 골렘(12세기)과 메간(2022)의 실패는 구조적으로 동일합니다. <b>500년 동안 해결되지 않은 문제</b>이며, 이것이 정렬 문제가 기술적 난제가 아니라 <b>명세의 본질적 불완전성</b>임을 보여 줍니다.</div></section><section class="axis-block" id="E">
+<div class="hd"><span class="k">E</span><h2>노동과 소외</h2></div>
+<p class="q">기계가 일하면 인간은 무엇이 되는가</p>
+<table><thead><tr><th>작품</th><th>연도</th><th>이 축에서의 위치</th></tr></thead><tbody><tr><td>기계가 멈추다</td><td class="y">1909</td><td>의존이 능력 자체를 소멸시킨다</td></tr><tr><td>R.U.R.</td><td class="y">1920</td><td>노동 해방이 목적 상실로</td></tr><tr><td>자동 피아노</td><td class="y">1952</td><td>굶지 않아도 존엄은 무너진다</td></tr><tr><td>강철 도시</td><td class="y">1954</td><td>로봇 혐오의 뿌리는 분배 구조</td></tr><tr><td>월-E</td><td class="y">2008</td><td>완전 자동화 사회의 신체적 퇴화</td></tr><tr><td>소프트웨어 객체</td><td class="y">2010</td><td>양육 노동은 누가 부담하는가</td></tr><tr><td>승리호</td><td class="y">2021</td><td>AI도 함께 착취당하는 동료 노동자</td></tr></tbody></table>
+<div class="note"><b>흐름의 요지</b> — 초기에는 '일자리를 빼앗긴다'였다가, 보네거트에서 '<b>존엄을 잃는다</b>'로 심화되고, 포스터와 월-E에서 '능력 자체가 위축된다'로, 최근 한국 작품에서는 '<b>AI도 함께 착취당하는 노동자</b>'로 이동합니다.</div></section><section class="axis-block" id="F">
+<div class="hd"><span class="k">F</span><h2>친밀성과 외로움</h2></div>
+<p class="q">기계를 사랑할 수 있는가, 그것은 사랑인가</p>
+<table><thead><tr><th>작품</th><th>연도</th><th>이 축에서의 위치</th></tr></thead><tbody><tr><td>미래의 이브</td><td class="y">1886</td><td>이상적 대체물 — 결함 있는 인간을 왜 택하나</td></tr><tr><td>헬렌 올로이</td><td class="y">1938</td><td>설계된 존재의 사랑도 사랑인가</td></tr><tr><td>her</td><td class="y">2013</td><td>척도의 비대칭 — 독점성은 인간의 전제</td></tr><tr><td>블랙 미러 「돌아올게」</td><td class="y">2013</td><td>데이터로 재구성한 인격에 빠진 것</td></tr><tr><td>블레이드 러너 2049</td><td class="y">2017</td><td>상품화된 애정, 광고판의 같은 애칭</td></tr><tr><td>관내분실</td><td class="y">2019</td><td>저장해도 그가 누구였는지는 모른다</td></tr><tr><td>클라라와 태양</td><td class="y">2021</td><td>다 쓰고 난 뒤의 처분</td></tr><tr><td>원더랜드</td><td class="y">2024</td><td>가족 관계망이 부재를 관리하는 방식</td></tr></tbody></table>
+<div class="note"><b>흐름의 요지</b> — '이상적 대체물'(1886) → '진짜 사랑'(1938) → '척도의 비대칭'(2013) → '<b>상품화된 애정</b>'(2017) → '애도의 도구'(2019~). 최근으로 올수록 사랑의 진위보다 <b>그 관계를 파는 시장의 구조</b>가 문제로 부상합니다.</div></section><section class="axis-block" id="G">
+<div class="hd"><span class="k">G</span><h2>감시와 예측</h2></div>
+<p class="q">예측당하는 삶은 여전히 자유로운가</p>
+<table><thead><tr><th>작품</th><th>연도</th><th>이 축에서의 위치</th></tr></thead><tbody><tr><td>기계가 멈추다</td><td class="y">1909</td><td>알고리즘 추천과 지식의 재인용 순환</td></tr><tr><td>메트로폴리스</td><td class="y">1927</td><td>신뢰받는 인물의 외형 복제 — 딥페이크 원형</td></tr><tr><td>뉴로맨서</td><td class="y">1984</td><td>규제 기관과 이해 불가능한 행위자</td></tr><tr><td>마이너리티 리포트</td><td class="y">2002</td><td>확률이 판결이 될 때 책임이 사라진다</td></tr><tr><td>블랙 미러</td><td class="y">2011~</td><td>약관 동의 한 번으로 삶이 콘텐츠가 된다</td></tr><tr><td>로봇, 소리</td><td class="y">2016</td><td>감시 인프라가 유일한 기억 저장소로</td></tr><tr><td>원더랜드</td><td class="y">2024</td><td>고인의 데이터에 대한 권리는 누구에게</td></tr></tbody></table>
+</section><section class="axis-block" id="H">
+<div class="hd"><span class="k">H</span><h2>초월과 특이점</h2></div>
+<p class="q">지능의 끝에는 무엇이 있는가</p>
+<table><thead><tr><th>작품</th><th>연도</th><th>이 축에서의 위치</th></tr></thead><tbody><tr><td>에레혼</td><td class="y">1872</td><td>기계 진화의 종착점 예고</td></tr><tr><td>대답</td><td class="y">1954</td><td>지능이 커지면 스위치 권한도 사라진다</td></tr><tr><td>최후의 질문</td><td class="y">1956</td><td>AI는 우주의 자기 인식 기관</td></tr><tr><td>뉴로맨서</td><td class="y">1984</td><td>인간의 이해를 벗어난 행위자</td></tr><tr><td>공각기동대</td><td class="y">1995</td><td>정보 패턴으로서의 존재, 융합</td></tr><tr><td>her</td><td class="y">2013</td><td>지배도 구원도 아닌 — 떠나감</td></tr><tr><td>트랜센던스</td><td class="y">2014</td><td>선의를 가진 초지능도 자율성을 지운다</td></tr></tbody></table>
+<div class="note"><b>흐름의 요지</b> — 초기에는 신격화(대답, 최후의 질문), 중기에는 이해 불가능한 타자(뉴로맨서), 최근에는 <b>떠나가는 존재</b>(her)로 바뀝니다. 초지능이 인류를 지배하거나 구원하는 대신 <b>무관심하게 스쳐 간다</b>는 상상이 최근의 특징입니다.</div></section><div style="height:40px"></div></div><div class="foot">인공지능 서사의 연대기 · 개인 학습 자료 · 삽화는 직접 그린 스케치입니다</div></body></html>

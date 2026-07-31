@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인공지능 서사의 연대기</title>
+    <style>
+        /* 기본 스타일 초기화 */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; background-color: #f4f7fa; color: #333; line-height: 1.6; }
+        a { text-decoration: none; color: inherit; transition: color 0.2s ease; }
+        a:hover { color: #0000e9; text-decoration: underline; }
+        ul { list-style: none; }
+        h1, h2, h3 { font-weight: 700; color: #0c0f17; }
+
+        /* 레이아웃 컨테이너 */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* 헤더 & 내비게이션 */
+        header { background-color: #fff; padding: 20px 0; border-bottom: 1px solid #e1e8ed; position: sticky; top: 0; z-index: 100; }
+        header .container { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 15px; }
+        .sub-title { font-size: 14px; color: #6f7e98; }
+        .main-title-link { font-size: 20px; font-weight: 700; color: #1fa25b; }
+        .nav-links { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
+        .nav-link { font-size: 14px; color: #555; }
+        .nav-link.active { font-weight: 700; color: #1fa25b; border-bottom: 2px solid #1fa25b; padding-bottom: 3px; }
+
+        /* 히어로 섹션 */
+        .hero-section { padding: 60px 0; text-align: center; }
+        .hero-subtitle { font-size: 18px; color: #1fa25b; font-weight: 700; margin-bottom: 10px; }
+        .hero-title { font-size: 40px; line-height: 1.2; margin-bottom: 20px; color: #0c0f17; }
+        .hero-title .highlight { color: #1fa25b; }
+        .hero-description { font-size: 16px; color: #555; max-width: 800px; margin: 0 auto; line-height: 1.7; }
+
+        /* 통계 섹션 */
+        .stats-section { background-color: #fff; padding: 40px 0; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 60px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center; }
+        .stat-item .stat-number { font-size: 44px; font-weight: 700; color: #1fa25b; line-height: 1; }
+        .stat-item .stat-label { font-size: 14px; color: #6f7e98; margin-top: 8px; }
+
+        /* 시대별 보기 섹션 */
+        .timeline-section-title { font-size: 24px; color: #6f7e98; margin-bottom: 30px; }
+        .timeline-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .timeline-card { background-color: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); transition: transform 0.2s ease, box-shadow 0.2s ease; display: flex; flex-direction: column; gap: 15px; }
+        .timeline-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+        .timeline-card .era-date { font-size: 12px; color: #0000e9; background-color: rgba(0,0,233,0.05); padding: 4px 8px; border-radius: 4px; display: inline-block; align-self: flex-start; }
+        .timeline-card .era-title { font-size: 19px; line-height: 1.3; font-weight: 700; }
+        .timeline-card .era-description { font-size: 14px; color: #555; line-height: 1.6; flex-grow: 1; }
+        .timeline-card .work-count { font-size: 12px; color: #0000e9; text-align: right; margin-top: 10px; }
+
+        /* 주제축 섹션 */
+        .themes-section { padding: 60px 0; }
+        .themes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .theme-card { background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.03); display: flex; align-items: flex-start; gap: 15px; transition: background-color 0.2s ease; }
+        .theme-card:hover { background-color: rgba(227,253,239,0.5); }
+        .theme-id { font-size: 13px; font-weight: 700; color: #1fa25b; background-color: #e3fdef; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 4px; flex-shrink: 0; }
+        .theme-content { flex-grow: 1; }
+        .theme-title { font-size: 14px; font-weight: 700; color: #333; margin-bottom: 5px; }
+        .theme-description { font-size: 12.5px; color: #6f7e98; }
+
+        /* 더 보기 섹션 */
+        .more-section { padding: 40px 0 60px; text-align: center; }
+        .more-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .more-card { background-color: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: flex; flex-direction: column; gap: 15px; align-items: center; }
+        .more-card .more-subtitle { font-size: 11px; color: #0000e9; background-color: rgba(0,0,233,0.05); padding: 2px 6px; border-radius: 4px; }
+        .more-card .more-title { font-size: 19px; font-weight: 700; }
+        .more-card .more-description { font-size: 14px; color: #555; line-height: 1.6; }
+
+        /* 푸터 */
+        footer { background-color: #333; color: #fff; padding: 20px 0; text-align: center; }
+        footer .footer-text { font-size: 13px; color: #b0bac9; }
+
+        /* 모바일 최적화 */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 32px; }
+            .timeline-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <span class="sub-title">김형진 선생님과 알아가는</span>
+            <a href="index.html" class="main-title-link">인공지능 서사의 연대기</a>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link active">대시보드</a>
+                <a href="e1.html" class="nav-link">신화·발명</a>
+                <a href="e2.html" class="nav-link">로봇·컴퓨터</a>
+                <a href="e3.html" class="nav-link">황금기·사이버펑크</a>
+                <a href="e4.html" class="nav-link">LLM 시대</a>
+                <a href="kr.html" class="nav-link">한국</a>
+                <a href="themes.html" class="nav-link">주제축</a>
+                <a href="teaching.html" class="nav-link">수업 활용</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero-section">
+            <span class="hero-subtitle">신화에서 LLM까지</span>
+            <h1 class="hero-title">인류가 <span class="highlight">기계 지능</span>을<br> 상상해 온 방식</h1>
+            <p class="hero-description">AI 소설과 영화는 각 시대의 기술 수준이 아니라 각 시대의 불안을 반영합니다. 산업혁명기에는 노동을 빼앗길까 두려웠고, 냉전기에는 핵 통제권을 넘길까 두려웠고, 오늘날에는 정체성과 관계를 대체당할까 두려워합니다.</p>
+        </section>
+
+        <section class="stats-section container">
+            <div class="stats-grid">
+                <div class="stat-item"><div class="stat-number">65</div><div class="stat-label">수록 작품</div></div>
+                <div class="stat-item"><div class="stat-number">2,700</div><div class="stat-label">년의 상상</div></div>
+                <div class="stat-item"><div class="stat-number">5</div><div class="stat-label">시대 구분</div></div>
+                <div class="stat-item"><div class="stat-number">8</div><div class="stat-label">주제축</div></div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <h2 class="timeline-section-title">시대별 보기</h2>
+            <div class="timeline-grid">
+                <article class="timeline-card">
+                    <span class="era-date">기원전 8세기 – 1909</span>
+                    <h3 class="era-title"><a href="e1.html">신화와 기계 지능의 발명</a></h3>
+                    <p class="era-description">만들어진 존재는 만든 자를 어떻게 배신하는가. 컴퓨터보다 2,700년 앞선 상상들.</p>
+                    <div class="work-count"><a href="e1.html">9편 수록</a></div>
+                </article>
+                <article class="timeline-card">
+                    <span class="era-date">1920 – 1967</span>
+                    <h3 class="era-title"><a href="e2.html">로봇의 탄생과 컴퓨터의 시대</a></h3>
+                    <p class="era-description">'로봇'이라는 단어가 생기고, 뒤이어 안전이 처음으로 공학 문제가 됩니다.</p>
+                    <div class="work-count"><a href="e2.html">13편 수록</a></div>
+                </article>
+                <article class="timeline-card">
+                    <span class="era-date">1968 – 1999</span>
+                    <h3 class="era-title"><a href="e3.html">황금기와 사이버펑크</a></h3>
+                    <p class="era-description">오늘날 우리가 AI를 상상하는 방식 전체가 이 시기에 결정되었습니다.</p>
+                    <div class="work-count"><a href="e3.html">16편 수록</a></div>
+                </article>
+                <article class="timeline-card">
+                    <span class="era-date">2001 – 2024</span>
+                    <h3 class="era-title"><a href="e4.html">딥러닝 전야와 LLM 시대</a></h3>
+                    <p class="era-description">로봇의 몸이 사라지고 목소리와 언어만 남습니다. 기술 발전과 정확히 겹칩니다.</p>
+                    <div class="work-count"><a href="e4.html">21편 수록</a></div>
+                </article>
+                <article class="timeline-card">
+                    <span class="era-date">2012 – 2024</span>
+                    <h3 class="era-title"><a href="kr.html">한국 작품</a></h3>
+                    <p class="era-description">지배와 저항이 아닌 돌봄·상실·관계. 한국 SF의 독자적 목소리.</p>
+                    <div class="work-count"><a href="kr.html">6편 수록</a></div>
+                </article>
+            </div>
+        </section>
+
+        <section class="themes-section">
+            <h2 class="timeline-section-title">여덟 개의 주제축</h2>
+            <div class="themes-grid">
+                <a href="themes.html#A" class="theme-card"><div class="theme-id">A</div><div class="theme-content"><div class="theme-title">창조자의 책임</div><p class="theme-description">만든 자는 만들어진 것에 무엇을 빚지는가</p></div></a>
+                <a href="themes.html#B" class="theme-card"><div class="theme-id">B</div><div class="theme-content"><div class="theme-title">반란과 실존 위협</div><p class="theme-description">통제를 벗어난 지능은 무엇을 하는가</p></div></a>
+                <a href="themes.html#C" class="theme-card"><div class="theme-id">C</div><div class="theme-content"><div class="theme-title">인간다움의 경계</div><p class="theme-description">무엇이 인간을 인간이게 하는가</p></div></a>
+                <a href="themes.html#D" class="theme-card"><div class="theme-id">D</div><div class="theme-content"><div class="theme-title">정렬과 통제</div><p class="theme-description">올바른 목표를 어떻게 심어 주는가</p></div></a>
+                <a href="themes.html#E" class="theme-card"><div class="theme-id">E</div><div class="theme-content"><div class="theme-title">노동과 소외</div><p class="theme-description">기계가 일하면 인간은 무엇이 되는가</p></div></a>
+                <a href="themes.html#F" class="theme-card"><div class="theme-id">F</div><div class="theme-content"><div class="theme-title">친밀성과 외로움</div><p class="theme-description">기계를 사랑할 수 있는가, 그것은 사랑인가</p></div></a>
+                <a href="themes.html#G" class="theme-card"><div class="theme-id">G</div><div class="theme-content"><div class="theme-title">감시와 예측</div><p class="theme-description">예측당하는 삶은 여전히 자유로운가</p></div></a>
+                <a href="themes.html#H" class="theme-card"><div class="theme-id">H</div><div class="theme-content"><div class="theme-title">초월과 특이점</div><p class="theme-description">지능의 끝에는 무엇이 있는가</p></div></a>
+            </div>
+        </section>
+
+        <section class="more-section">
+            <h2 class="timeline-section-title">더 보기</h2>
+            <div class="more-grid">
+                <article class="more-card">
+                    <span class="more-subtitle">교차 정리</span>
+                    <h3 class="more-title"><a href="themes.html">주제축별 계보</a></h3>
+                    <p class="more-description">같은 문제가 시대마다 어떻게 변주됐는지 세로로 읽습니다. 골렘부터 메간까지, 500년 동안 같은 실패가 반복됩니다.</p>
+                </article>
+                <article class="more-card">
+                    <span class="more-subtitle">교육 활용</span>
+                    <h3 class="more-title"><a href="teaching.html">수업 활용 제안</a></h3>
+                    <p class="more-description">학년별 추천 조합, 대비 짝짓기, 토론 발문, 그리고 서사 요소를 실제 AI 개념에 연결한 표.</p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-text">
+            인공지능 서사의 연대기 · 개인 학습 자료 · 삽화는 직접 그린 스케치입니다
+        </div>
+    </footer>
+</body>
+</html>

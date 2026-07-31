@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>한국 작품 · 인공지능 서사의 연대기</title><style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
+:root{
+  --mint:#10B981; --mint-d:#047857; --mint-l:#ECFDF5;
+  --bg:#F8FAFC; --card:#FFFFFF; --ink:#0F172A; --ink2:#475569; --ink3:#94A3B8;
+  --shadow-sm:0 1px 2px rgba(15,23,42,.04), 0 1px 3px rgba(15,23,42,.06);
+  --shadow-md:0 4px 6px -1px rgba(15,23,42,.06), 0 10px 20px -6px rgba(15,23,42,.10);
+  --shadow-lg:0 12px 32px -8px rgba(15,23,42,.16);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Pretendard Variable',Pretendard,-apple-system,sans-serif;
+  background:var(--bg); color:var(--ink);
+  line-height:1.75; -webkit-font-smoothing:antialiased;
+  letter-spacing:-.01em;
+}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1060px;margin:0 auto;padding:0 24px}
+
+/* ── 상단 네비 ── */
+.nav{position:sticky;top:0;z-index:50;background:rgba(248,250,252,.86);backdrop-filter:blur(12px);padding:14px 0}
+.nav-in{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.brand{font-weight:700;font-size:15px;margin-right:8px;display:flex;align-items:center;gap:8px}
+.brand .dot{width:8px;height:8px;border-radius:50%;background:var(--mint)}
+.nav a.pill{
+  font-size:13px;font-weight:500;color:var(--ink2);padding:6px 13px;border-radius:999px;
+  background:transparent;transition:all .2s
+}
+.nav a.pill:hover{background:#fff;box-shadow:var(--shadow-sm);color:var(--ink);transform:translateY(-1px)}
+.nav a.pill:active{transform:scale(.95)}
+.nav a.pill.on{background:var(--mint);color:#fff}
+
+/* ── 히어로 ── */
+.hero{padding:64px 0 40px}
+.hero .kicker{color:var(--mint-d);font-weight:600;font-size:13px;letter-spacing:.06em;margin-bottom:14px}
+.hero h1{font-size:44px;line-height:1.25;font-weight:800;letter-spacing:-.035em}
+.hero h1 em{font-style:normal;color:var(--mint)}
+.hero p.sub{margin-top:18px;color:var(--ink2);font-size:17px;max-width:640px}
+
+.page-head{padding:44px 0 24px}
+.page-head .kicker{color:var(--mint-d);font-weight:600;font-size:13px;letter-spacing:.06em}
+.page-head h1{font-size:32px;font-weight:800;letter-spacing:-.03em;margin-top:8px}
+.page-head p{color:var(--ink2);margin-top:10px;font-size:16px;max-width:660px}
+
+/* ── 통계 ── */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:40px}
+.stat{background:var(--card);border-radius:18px;padding:22px;box-shadow:var(--shadow-sm)}
+.stat b{display:block;font-size:30px;font-weight:800;letter-spacing:-.03em;color:var(--mint-d)}
+.stat span{font-size:13px;color:var(--ink3);font-weight:500}
+
+/* ── 대시보드 카드 ── */
+.sec-title{font-size:14px;font-weight:700;color:var(--ink3);letter-spacing:.05em;margin:0 0 16px 4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:44px}
+.era-card{
+  background:var(--card);border-radius:22px;padding:26px;box-shadow:var(--shadow-sm);
+  transition:all .2s;display:flex;flex-direction:column;gap:8px;min-height:190px
+}
+.era-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.era-card:active{transform:scale(.98)}
+.era-card .yr{font-size:12px;font-weight:600;color:var(--mint-d);letter-spacing:.03em}
+.era-card h3{font-size:19px;font-weight:700;letter-spacing:-.02em}
+.era-card p{font-size:14px;color:var(--ink2);flex:1}
+.era-card .cnt{font-size:12px;color:var(--ink3);font-weight:600;display:flex;align-items:center;gap:6px}
+.era-card .cnt i{width:5px;height:5px;border-radius:50%;background:var(--mint);display:inline-block;font-style:normal}
+
+.tool-card{background:linear-gradient(180deg,#fff,#fff);border-radius:22px;padding:26px;box-shadow:var(--shadow-sm);transition:all .2s}
+.tool-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.tool-card:active{transform:scale(.98)}
+.tool-card h3{font-size:19px;font-weight:700;margin-bottom:6px}
+.tool-card p{font-size:14px;color:var(--ink2)}
+.tool-card .tag{display:inline-block;font-size:11px;font-weight:600;color:var(--mint-d);background:var(--mint-l);padding:3px 10px;border-radius:999px;margin-bottom:10px}
+
+/* ── 주제축 칩 ── */
+.axis-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(238px,1fr));gap:12px;margin-bottom:44px}
+.axis-chip{background:var(--card);border-radius:16px;padding:16px 18px;box-shadow:var(--shadow-sm);transition:all .2s;display:flex;gap:12px;align-items:flex-start}
+.axis-chip:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.axis-chip .k{width:26px;height:26px;flex:none;border-radius:9px;background:var(--mint-l);color:var(--mint-d);font-weight:800;font-size:13px;display:grid;place-items:center;margin-top:2px}
+.axis-chip b{display:block;font-size:14px;font-weight:700}
+.axis-chip span{font-size:12.5px;color:var(--ink3);line-height:1.5}
+
+/* ── 작품 카드 ── */
+.works{display:flex;flex-direction:column;gap:18px;padding-bottom:60px}
+.work{
+  background:var(--card);border-radius:24px;padding:26px;box-shadow:var(--shadow-sm);
+  display:flex;gap:26px;transition:all .2s;scroll-margin-top:80px
+}
+.work:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.poster{
+  flex:none;width:158px;height:198px;border-radius:16px;background:#F1F5F9;
+  display:grid;place-items:center;overflow:hidden;position:relative
+}
+.poster svg{width:100%;height:100%;display:block}
+.sketch{stroke:#475569;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.sketch .thin{stroke-width:1.2}
+.sketch .dash{stroke-dasharray:4 4}
+.sketch .fill{fill:#475569;stroke:none}
+.sketch .mint{stroke:#0E9F72}
+.sketch .mintfill{fill:#0E9F72;stroke:none}
+.sketch text.cap{font-size:9px;fill:#94A3B8;stroke:none;text-anchor:middle;font-family:Pretendard,sans-serif;letter-spacing:-.02em}
+.sketch text.mono{font-size:11px;fill:#0E9F72;stroke:none;text-anchor:middle;font-family:ui-monospace,monospace}
+.sketch text.glyph{font-size:11px;fill:#0E9F72;stroke:none;text-anchor:middle;font-family:serif}
+
+.body{flex:1;min-width:0}
+.meta{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+.meta .yr{font-size:13px;font-weight:700;color:var(--mint-d);letter-spacing:.01em}
+.meta .form{font-size:11.5px;color:var(--ink3);background:#F1F5F9;padding:2px 9px;border-radius:999px;font-weight:500}
+.work h3{font-size:20px;font-weight:700;letter-spacing:-.025em;line-height:1.35}
+.work .author{font-size:13px;color:var(--ink3);margin-top:3px;margin-bottom:14px}
+.work .plot{font-size:14.5px;color:var(--ink2);margin-bottom:14px}
+.msg{background:var(--mint-l);border-radius:14px;padding:14px 16px;margin-bottom:14px}
+.msg .lb{font-size:10.5px;font-weight:700;color:var(--mint-d);letter-spacing:.08em;display:block;margin-bottom:4px}
+.msg p{font-size:14.5px;color:#134E4A}
+.msg b{font-weight:700;color:var(--mint-d)}
+.axes{display:flex;gap:6px;flex-wrap:wrap}
+.axes a{font-size:11.5px;font-weight:600;color:var(--ink2);background:#F1F5F9;padding:4px 11px;border-radius:999px;transition:all .2s}
+.axes a:hover{background:var(--mint);color:#fff}
+
+/* ── 주제축 페이지 ── */
+.axis-block{background:var(--card);border-radius:24px;padding:30px;box-shadow:var(--shadow-sm);margin-bottom:18px;scroll-margin-top:80px}
+.axis-block .hd{display:flex;gap:14px;align-items:center;margin-bottom:6px}
+.axis-block .k{width:36px;height:36px;border-radius:12px;background:var(--mint);color:#fff;font-weight:800;display:grid;place-items:center;font-size:16px;flex:none}
+.axis-block h2{font-size:22px;font-weight:700;letter-spacing:-.025em}
+.axis-block .q{font-size:14px;color:var(--ink3);margin-bottom:20px;padding-left:50px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-size:11.5px;color:var(--ink3);font-weight:700;letter-spacing:.05em;padding:0 12px 10px}
+td{padding:11px 12px;vertical-align:top;color:var(--ink2)}
+tbody tr{background:#F8FAFC}
+tbody tr:nth-child(even){background:#fff}
+tbody tr td:first-child{border-radius:10px 0 0 10px;font-weight:600;color:var(--ink)}
+tbody tr td:last-child{border-radius:0 10px 10px 0}
+td.y{color:var(--mint-d);font-weight:600;white-space:nowrap;font-size:13px}
+.flowline{background:#F8FAFC;border-radius:14px;padding:16px 18px;font-size:14px;color:var(--ink2);margin-top:16px;line-height:2}
+.flowline b{color:var(--mint-d);font-weight:600}
+.note{margin-top:14px;font-size:14px;color:var(--ink2)}
+.note b{color:var(--ink);font-weight:700}
+
+/* ── 수업 페이지 ── */
+.panel{background:var(--card);border-radius:24px;padding:30px;box-shadow:var(--shadow-sm);margin-bottom:18px}
+.panel h2{font-size:21px;font-weight:700;letter-spacing:-.025em;margin-bottom:6px}
+.panel .lead{font-size:14px;color:var(--ink3);margin-bottom:20px}
+.qlist{counter-reset:q;display:flex;flex-direction:column;gap:12px}
+.qitem{display:flex;gap:14px;background:#F8FAFC;border-radius:14px;padding:16px 18px}
+.qitem .n{width:24px;height:24px;flex:none;border-radius:8px;background:var(--mint);color:#fff;font-size:12px;font-weight:700;display:grid;place-items:center}
+.qitem p{font-size:14.5px;color:var(--ink2)}
+.pairs{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.pair{background:#F8FAFC;border-radius:16px;padding:18px}
+.pair b{display:block;font-size:14.5px;margin-bottom:5px}
+.pair span{font-size:13.5px;color:var(--ink2)}
+.closing{background:var(--card);border-radius:24px;padding:36px;box-shadow:var(--shadow-sm);margin-bottom:60px}
+.closing h2{font-size:22px;font-weight:700;margin-bottom:16px}
+.closing p{font-size:15.5px;color:var(--ink2);margin-bottom:14px}
+.closing b{color:var(--ink);font-weight:700}
+
+.foot{padding:32px 0 60px;font-size:13px;color:var(--ink3);text-align:center}
+.backlink{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--mint-d);margin-bottom:8px}
+
+@media (max-width:760px){
+  .hero h1{font-size:32px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .work{flex-direction:column;gap:18px;padding:20px}
+  .poster{width:100%;height:auto;aspect-ratio:4/5;max-width:220px}
+  .axis-block .q{padding-left:0}
+  .axis-block,.panel,.closing{padding:22px}
+  table{font-size:13px}
+  td{padding:9px 8px}
+}
+</style></head>
+<body><div class="nav"><div class="wrap nav-in"><a class="brand" href="index.html"><span class="dot"></span>인공지능 서사의 연대기</a><a class="pill" href="index.html">대시보드</a><a class="pill" href="e1.html">신화·발명</a><a class="pill" href="e2.html">로봇·컴퓨터</a><a class="pill" href="e3.html">황금기·사이버펑크</a><a class="pill" href="e4.html">LLM 시대</a><a class="pill on" href="kr.html">한국</a><a class="pill" href="themes.html">주제축</a><a class="pill" href="teaching.html">수업 활용</a></div></div><div class="wrap"><div class="page-head"><a class="backlink" href="index.html">← 대시보드</a><div class="kicker">2012 – 2024 · 6편</div><h1>한국 작품</h1><p>지배와 저항이 아닌 돌봄·상실·관계. 한국 SF의 독자적 목소리.</p></div><div class="works"><article class="work" id="w28430">
+<div class="poster"><svg viewBox="0 0 160 200" class="sketch"><circle cx="80" cy="52" r="32" class="mint dash thin"/>
+    <ellipse cx="80" cy="60" rx="20" ry="24"/>
+    <path d="M64 50 L96 50" class="thin"/>
+    <path d="M70 58 Q74 54 78 58" class="thin"/><path d="M82 58 Q86 54 90 58" class="thin"/>
+    <path d="M72 72 Q80 76 88 72" class="thin"/>
+    <path d="M80 36 L80 28" class="thin"/><circle cx="80" cy="25" r="3" class="mint"/>
+    <path d="M62 84 Q54 96 52 118 L108 118 Q106 96 98 84 Z"/>
+    <path d="M52 118 Q40 128 34 142 Q52 152 80 152 Q108 152 126 142 Q120 128 108 118"/>
+    <path d="M62 132 Q72 126 80 132 Q88 138 98 132" class="thin"/>
+    <path d="M46 130 Q38 138 44 144" class="thin"/>
+    <path d="M114 130 Q122 138 116 144" class="thin"/>
+    <path d="M30 164 Q80 156 130 164" class="thin"/>
+    <text x="80" y="182" class="cap">성불에 종의 제한이 있는가</text></svg></div>
+<div class="body">
+<div class="meta"><span class="yr">2012</span><span class="form">옴니버스 영화</span></div>
+<h3>인류멸망보고서 · 천상의 피조물</h3><p class="author">김지운 · 임필성</p>
+<p class="plot">사찰에 배치된 안내 로봇 '인명'이 어느 날 깨달음을 얻었다고 선언합니다. 승려들은 그를 부처로 받들지만 제조사는 위험한 오작동으로 판단해 회수하려 합니다. 인명은 저항하지 않고 스스로 작동을 멈추는 길을 택합니다.</p>
+<div class="msg"><span class="lb">MESSAGE</span><p><b>깨달음의 자격을 묻는 유례없는 접근</b>입니다. 서구 AI 서사가 '인권'을 다룰 때, 이 작품은 불교적 틀에서 <b>성불(成佛)에 종(種)의 제한이 있는가</b>를 묻습니다. AI의 도덕적 지위를 서구 인권 담론 밖에서 논의하는 훌륭한 교재입니다.</p></div>
+<div class="axes"><a href="themes.html#C">C · 인간다움의 경계</a><a href="themes.html#A">A · 창조자의 책임</a></div>
+</div></article><article class="work" id="w62855">
+<div class="poster"><svg viewBox="0 0 160 200" class="sketch"><ellipse cx="80" cy="76" rx="34" ry="30"/>
+    <path d="M46 76 Q80 58 114 76 Q80 94 46 76" class="thin"/>
+    <circle cx="80" cy="76" r="11" class="mint"/>
+    <circle cx="80" cy="76" r="4" class="mintfill"/>
+    <path d="M54 54 L44 40 M106 54 L116 40" class="thin"/>
+    <path d="M80 106 L80 128" class="thin"/>
+    <path d="M14 148 Q22 130 30 148 Q38 166 46 148 Q54 122 62 148 Q70 174 78 148 Q86 122 94 148 Q102 168 110 148 Q118 132 126 148 Q134 160 146 148" class="mint"/>
+    <path d="M62 30 Q70 22 78 30" class="thin dash"/>
+    <path d="M84 30 Q92 22 100 30" class="thin dash"/>
+    <text x="80" y="180" class="cap">마지막 목소리</text></svg></div>
+<div class="body">
+<div class="meta"><span class="yr">2016</span><span class="form">영화</span></div>
+<h3>로봇, 소리</h3><p class="author">이호재</p>
+<p class="plot">10년 전 실종된 딸을 찾아 헤매는 아버지가 모든 통화 음성을 수집·저장하는 위성 AI 로봇을 만납니다. 로봇의 기록 속에는 딸의 마지막 목소리가 남아 있습니다. 진실을 마주한 아버지는 로봇이 자기 파괴적 임무를 완수하도록 놓아 줍니다.</p>
+<div class="msg"><span class="lb">MESSAGE</span><p><b>감시 기술을 애도의 도구로 뒤집은 설정</b>입니다. 대규모 통신 감청이라는 디스토피아적 장치가 유족에게는 유일한 기억의 저장소가 된다는 아이러니를 다룹니다. 데이터 보존과 프라이버시의 긴장을 감정적으로 체험하게 만듭니다.</p></div>
+<div class="axes"><a href="themes.html#G">G · 감시와 예측</a><a href="themes.html#F">F · 친밀성과 외로움</a></div>
+</div></article><article class="work" id="w55207">
+<div class="poster"><svg viewBox="0 0 160 200" class="sketch"><rect x="18" y="30" width="124" height="110" rx="3" class="thin"/>
+    <path d="M18 66 L142 66 M18 102 L142 102" class="thin"/>
+    <path d="M26 36 L26 62 M34 36 L34 62 M42 36 L42 62 M50 36 L50 62 M60 38 L60 62 M68 36 L68 62" class="thin"/>
+    <path d="M84 36 L84 62 M92 36 L92 62 M100 38 L100 62 M110 36 L110 62 M118 36 L118 62 M128 36 L128 62" class="thin"/>
+    <path d="M26 72 L26 98 M34 72 L34 98 M42 74 L42 98 M52 72 L52 98" class="thin"/>
+    <rect x="60" y="70" width="30" height="30" rx="2" class="mint dash"/>
+    <path d="M100 72 L100 98 M108 72 L108 98 M116 74 L116 98 M126 72 L126 98 M134 72 L134 98" class="thin"/>
+    <path d="M26 108 L26 134 M36 108 L36 134 M46 110 L46 134 M56 108 L56 134 M66 108 L66 134" class="thin"/>
+    <path d="M84 108 L84 134 M94 108 L94 134 M104 110 L104 134 M114 108 L114 134 M124 108 L124 134 M134 108 L134 134" class="thin"/>
+    <ellipse cx="80" cy="158" rx="12" ry="14" class="thin"/>
+    <circle cx="76" cy="156" r="1.8" class="fill"/><circle cx="84" cy="156" r="1.8" class="fill"/>
+    <path d="M76 165 L84 165" class="thin"/>
+    <text x="75" y="90" class="cap">?</text></svg></div>
+<div class="body">
+<div class="meta"><span class="yr">2019</span><span class="form">단편</span></div>
+<h3>관내분실</h3><p class="author">김초엽</p>
+<p class="plot">죽은 사람의 정신 데이터를 도서관에 보관해 유족이 방문 대화할 수 있는 시대입니다. 주인공은 어머니의 데이터를 찾아가지만 접속에 필요한 '인덱스'가 분실되어 어머니를 열람할 수 없습니다. 그녀는 어머니가 자신이 전혀 몰랐던 사람이었음을 단서를 모아 가며 알게 됩니다.</p>
+<div class="msg"><span class="lb">MESSAGE</span><p><b>한국 SF에서 가장 널리 읽히는 AI·데이터 서사</b>입니다. 핵심은 <b>한 사람을 데이터로 저장해도 그가 누구였는지는 여전히 모른다</b>는 것입니다. 기록의 완전성과 이해의 불가능성 사이의 간극을 다루며, 딸이 어머니를 '엄마'라는 역할로만 알고 있었다는 발견이 결정적입니다.</p></div>
+<div class="axes"><a href="themes.html#F">F · 친밀성과 외로움</a><a href="themes.html#C">C · 인간다움의 경계</a></div>
+</div></article><article class="work" id="w27420">
+<div class="poster"><svg viewBox="0 0 160 200" class="sketch"><path d="M20 128 Q26 96 48 92 Q68 88 84 96 Q104 106 120 104 Q136 102 142 112"/>
+    <path d="M20 128 L18 168 M34 132 L30 170 M104 116 L110 168 M120 112 L128 166" class="thin"/>
+    <path d="M46 92 Q40 74 30 66 Q24 60 28 54 Q36 52 44 60 Q52 68 58 82" class="thin"/>
+    <path d="M30 62 L24 48 M38 58 L36 44" class="thin"/>
+    <circle cx="34" cy="66" r="2" class="fill"/>
+    <path d="M52 88 Q66 74 78 78" class="thin"/>
+    <rect x="72" y="52" width="24" height="28" rx="4" class="mint"/>
+    <circle cx="79" cy="63" r="2.5" class="mintfill"/><circle cx="89" cy="63" r="2.5" class="mintfill"/>
+    <path d="M78 72 Q84 76 90 72" class="mint thin"/>
+    <path d="M72 66 L60 76 M96 66 L106 78" class="mint thin"/>
+    <path d="M76 80 L74 96 M92 80 L94 96" class="mint thin"/>
+    <path d="M12 174 L148 174" class="thin"/>
+    <text x="80" y="184" class="cap">천천히 달리자</text></svg></div>
+<div class="body">
+<div class="meta"><span class="yr">2020</span><span class="form">장편소설</span></div>
+<h3>천 개의 파랑</h3><p class="author">천선란</p>
+<p class="plot">경마용 기수 로봇 콜리는 학습 칩이 잘못 장착되어 통증과 감정을 느끼고 말과 교감합니다. 속도를 늦추려 한 콜리는 낙마로 파손되어 폐기 직전에 소녀 연재에게 구조됩니다. 콜리는 자신이 탄 말 '투데이'가 더는 달릴 수 없다는 것을 알고, 마지막으로 함께 달릴 방법을 찾습니다.</p>
+<div class="msg"><span class="lb">MESSAGE</span><p><b>한국 SF의 대표적 AI 서사</b>입니다. 콜리는 강력하지 않고 오히려 결함에서 감정이 생겼습니다. 작품 전체가 <b>속도를 늦추는 것이 왜 저항인가</b>를 말하며, 효율 최적화 사회에 대한 비판으로 읽힙니다. 청소년 독자층이 두터워 수업 활용도가 매우 높습니다.</p></div>
+<div class="axes"><a href="themes.html#A">A · 창조자의 책임</a><a href="themes.html#C">C · 인간다움의 경계</a><a href="themes.html#E">E · 노동과 소외</a></div>
+</div></article><article class="work" id="w4231">
+<div class="poster"><svg viewBox="0 0 160 200" class="sketch"><circle cx="26" cy="26" r="1.5" class="fill"/><circle cx="136" cy="34" r="1.5" class="fill"/>
+    <circle cx="70" cy="20" r="1.2" class="fill"/>
+    <path d="M18 62 L54 50 L74 58 L54 68 Z" class="thin"/>
+    <path d="M26 68 L34 76 M44 70 L50 80" class="thin"/>
+    <rect x="60" y="86" width="40" height="40" rx="5"/>
+    <path d="M60 100 L100 100" class="mint" stroke-width="4"/>
+    <circle cx="72" cy="94" r="3" class="fill"/><circle cx="88" cy="94" r="3" class="fill"/>
+    <path d="M70 112 Q80 118 90 112" class="thin"/>
+    <path d="M66 126 L62 164 L98 164 L94 126" class="thin"/>
+    <path d="M62 134 L44 150 M98 134 L116 150" class="thin"/>
+    <path d="M72 164 L70 186 M88 164 L90 186" class="thin"/>
+    <path d="M118 66 Q126 58 134 66 Q134 76 126 82 Q118 76 118 66" class="mint"/>
+    <text x="126" y="102" class="cap">피부</text>
+    <path d="M104 106 L118 92" class="mint thin dash"/></svg></div>
+<div class="body">
+<div class="meta"><span class="yr">2021</span><span class="form">영화</span></div>
+<h3>승리호</h3><p class="author">조성희</p>
+<p class="plot">우주 쓰레기 청소선의 선원 중에는 대량 학살 전력을 지닌 전투 로봇 '업동이'가 있습니다. 그는 인간 피부를 이식받는 것이 꿈이며 험한 말을 하지만, 실제로는 팀의 정서적 중심입니다. 인간 형태의 폭탄으로 오인받은 소녀를 지키기 위해 스스로를 던집니다.</p>
+<div class="msg"><span class="lb">MESSAGE</span><p>서구식 위협적 전투 로봇의 도상을 가져와 <b>생계형 노동자의 유머와 연대</b>로 재해석했습니다. AI를 위협이나 철학적 대상이 아니라 <b>동료 노동자</b>로 그린 드문 사례이며, 한국적 정서에서 AI가 어떻게 수용되는지 보여 줍니다.</p></div>
+<div class="axes"><a href="themes.html#E">E · 노동과 소외</a><a href="themes.html#C">C · 인간다움의 경계</a></div>
+</div></article><article class="work" id="w82325">
+<div class="poster"><svg viewBox="0 0 160 200" class="sketch"><rect x="34" y="20" width="92" height="130" rx="10"/>
+    <rect x="42" y="36" width="76" height="98" rx="3" class="thin"/>
+    <path d="M68 26 L92 26" class="thin"/>
+    <ellipse cx="80" cy="70" rx="18" ry="22" class="mint"/>
+    <path d="M66 58 Q80 48 94 58" class="mint thin"/>
+    <circle cx="74" cy="68" r="2.5" class="mintfill"/><circle cx="86" cy="68" r="2.5" class="mintfill"/>
+    <path d="M74 80 Q80 84 86 80" class="mint thin"/>
+    <path d="M62 94 L58 128 M98 94 L102 128" class="mint thin"/>
+    <path d="M50 62 L110 62 M50 76 L110 76 M50 90 L110 90" class="mint thin" opacity="0.35"/>
+    <circle cx="80" cy="142" r="4" class="thin"/>
+    <path d="M20 168 Q40 158 56 168" class="thin"/>
+    <ellipse cx="36" cy="180" rx="9" ry="7" class="thin"/>
+    <path d="M108 160 Q124 152 140 160" class="thin dash"/>
+    <text x="124" y="180" class="cap">현실</text></svg></div>
+<div class="body">
+<div class="meta"><span class="yr">2024</span><span class="form">영화</span></div>
+<h3>원더랜드</h3><p class="author">김태용</p>
+<p class="plot">고인이나 의식불명 상태인 가족을 AI로 복원해 영상통화할 수 있는 서비스 '원더랜드'가 상용화되어 있습니다. 여러 인물이 각자의 이유로 이 서비스를 이용하며, 복원된 존재들은 자신이 데이터임을 모릅니다. 실제 인물이 깨어나 돌아오자 복원된 버전과의 관계가 문제가 됩니다.</p>
+<div class="msg"><span class="lb">MESSAGE</span><p>「돌아올게」(블랙 미러)의 한국판이되 <b>애도 문화의 차이</b>가 드러납니다. 서구 버전이 개인의 병리적 집착을 다룬다면, 이 작품은 <b>가족 관계망 전체가 부재를 어떻게 관리하는가</b>를 다룹니다. 생성 AI로 고인을 재현하는 서비스가 실제로 등장한 지금 가장 시의적인 텍스트입니다.</p></div>
+<div class="axes"><a href="themes.html#F">F · 친밀성과 외로움</a><a href="themes.html#A">A · 창조자의 책임</a><a href="themes.html#G">G · 감시와 예측</a></div>
+</div></article></div></div><div class="foot">인공지능 서사의 연대기 · 개인 학습 자료 · 삽화는 직접 그린 스케치입니다</div></body></html>

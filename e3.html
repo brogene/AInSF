@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>황금기와 사이버펑크 · 인공지능 서사의 연대기</title><style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
+:root{
+  --mint:#10B981; --mint-d:#047857; --mint-l:#ECFDF5;
+  --bg:#F8FAFC; --card:#FFFFFF; --ink:#0F172A; --ink2:#475569; --ink3:#94A3B8;
+  --shadow-sm:0 1px 2px rgba(15,23,42,.04), 0 1px 3px rgba(15,23,42,.06);
+  --shadow-md:0 4px 6px -1px rgba(15,23,42,.06), 0 10px 20px -6px rgba(15,23,42,.10);
+  --shadow-lg:0 12px 32px -8px rgba(15,23,42,.16);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Pretendard Variable',Pretendard,-apple-system,sans-serif;
+  background:var(--bg); color:var(--ink);
+  line-height:1.75; -webkit-font-smoothing:antialiased;
+  letter-spacing:-.01em;
+}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1060px;margin:0 auto;padding:0 24px}
+
+/* ── 상단 네비 ── */
+.nav{position:sticky;top:0;z-index:50;background:rgba(248,250,252,.86);backdrop-filter:blur(12px);padding:14px 0}
+.nav-in{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.brand{font-weight:700;font-size:15px;margin-right:8px;display:flex;align-items:center;gap:8px}
+.brand .dot{width:8px;height:8px;border-radius:50%;background:var(--mint)}
+.nav a.pill{
+  font-size:13px;font-weight:500;color:var(--ink2);padding:6px 13px;border-radius:999px;
+  background:transparent;transition:all .2s
+}
+.nav a.pill:hover{background:#fff;box-shadow:var(--shadow-sm);color:var(--ink);transform:translateY(-1px)}
+.nav a.pill:active{transform:scale(.95)}
+.nav a.pill.on{background:var(--mint);color:#fff}
+
+/* ── 히어로 ── */
+.hero{padding:64px 0 40px}
+.hero .kicker{color:var(--mint-d);font-weight:600;font-size:13px;letter-spacing:.06em;margin-bottom:14px}
+.hero h1{font-size:44px;line-height:1.25;font-weight:800;letter-spacing:-.035em}
+.hero h1 em{font-style:normal;color:var(--mint)}
+.hero p.sub{margin-top:18px;color:var(--ink2);font-size:17px;max-width:640px}
+
+.page-head{padding:44px 0 24px}
+.page-head .kicker{color:var(--mint-d);font-weight:600;font-size:13px;letter-spacing:.06em}
+.page-head h1{font-size:32px;font-weight:800;letter-spacing:-.03em;margin-top:8px}
+.page-head p{color:var(--ink2);margin-top:10px;font-size:16px;max-width:660px}
+
+/* ── 통계 ── */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:40px}
+.stat{background:var(--card);border-radius:18px;padding:22px;box-shadow:var(--shadow-sm)}
+.stat b{display:block;font-size:30px;font-weight:800;letter-spacing:-.03em;color:var(--mint-d)}
+.stat span{font-size:13px;color:var(--ink3);font-weight:500}
+
+/* ── 대시보드 카드 ── */
+.sec-title{font-size:14px;font-weight:700;color:var(--ink3);letter-spacing:.05em;margin:0 0 16px 4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:44px}
+.era-card{
+  background:var(--card);border-radius:22px;padding:26px;box-shadow:var(--shadow-sm);
+  transition:all .2s;display:flex;flex-direction:column;gap:8px;min-height:190px
+}
+.era-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.era-card:active{transform:scale(.98)}
+.era-card .yr{font-size:12px;font-weight:600;color:var(--mint-d);letter-spacing:.03em}
+.era-card h3{font-size:19px;font-weight:700;letter-spacing:-.02em}
+.era-card p{font-size:14px;color:var(--ink2);flex:1}
+.era-card .cnt{font-size:12px;color:var(--ink3);font-weight:600;display:flex;align-items:center;gap:6px}
+.era-card .cnt i{width:5px;height:5px;border-radius:50%;background:var(--mint);display:inline-block;font-style:normal}
+
+.tool-card{background:linear-gradient(180deg,#fff,#fff);border-radius:22px;padding:26px;box-shadow:var(--shadow-sm);transition:all .2s}
+.tool-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.tool-card:active{transform:scale(.98)}
+.tool-card h3{font-size:19px;font-weight:700;margin-bottom:6px}
+.tool-card p{font-size:14px;color:var(--ink2)}
+.tool-card .tag{display:inline-block;font-size:11px;font-weight:600;color:var(--mint-d);background:var(--mint-l);padding:3px 10px;border-radius:999px;margin-bottom:10px}
+
+/* ── 주제축 칩 ── */
+.axis-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(238px,1fr));gap:12px;margin-bottom:44px}
+.axis-chip{background:var(--card);border-radius:16px;padding:16px 18px;box-shadow:var(--shadow-sm);transition:all .2s;display:flex;gap:12px;align-items:flex-start}
+.axis-chip:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.axis-chip .k{width:26px;height:26px;flex:none;border-radius:9px;background:var(--mint-l);color:var(--mint-d);font-weight:800;font-size:13px;display:grid;place-items:center;margin-top:2px}
+.axis-chip b{display:block;font-size:14px;font-weight:700}
+.axis-chip span{font-size:12.5px;color:var(--ink3);line-height:1.5}
+
+/* ── 작품 카드 ── */
+.works{display:flex;flex-direction:column;gap:18px;padding-bottom:60px}
+.work{
+  background:var(--card);border-radius:24px;padding:26px;box-shadow:var(--shadow-sm);
+  display:flex;gap:26px;transition:all .2s;scroll-margin-top:80px
+}
+.work:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.poster{
+  flex:none;width:158px;height:198px;border-radius:16px;background:#F1F5F9;
+  display:grid;place-items:center;overflow:hidden;position:relative
+}
+.poster svg{width:100%;height:100%;display:block}
+.sketch{stroke:#475569;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.sketch .thin{stroke-width:1.2}
+.sketch .dash{stroke-dasharray:4 4}
+.sketch .fill{fill:#475569;stroke:none}
+.sketch .mint{stroke:#0E9F72}
+.sketch .mintfill{fill:#0E9F72;stroke:none}
+.sketch text.cap{font-size:9px;fill:#94A3B8;stroke:none;text-anchor:middle;font-family:Pretendard,sans-serif;letter-spacing:-.02em}
+.sketch text.mono{font-size:11px;fill:#0E9F72;stroke:none;text-anchor:middle;font-family:ui-monospace,monospace}
+.sketch text.glyph{font-size:11px;fill:#0E9F72;stroke:none;text-anchor:middle;font-family:serif}
+
+.body{flex:1;min-width:0}
+.meta{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+.meta .yr{font-size:13px;font-weight:700;color:var(--mint-d);letter-spacing:.01em}
+.meta .form{font-size:11.5px;color:var(--ink3);background:#F1F5F9;padding:2px 9px;border-radius:999px;font-weight:500}
+.work h3{font-size:20px;font-weight:700;letter-spacing:-.025em;line-height:1.35}
+.work .author{font-size:13px;color:var(--ink3);margin-top:3px;margin-bottom:14px}
+.work .plot{font-size:14.5px;color:var(--ink2);margin-bottom:14px}
+.msg{background:var(--mint-l);border-radius:14px;padding:14px 16px;margin-bottom:14px}
+.msg .lb{font-size:10.5px;font-weight:700;color:var(--mint-d);letter-spacing:.08em;display:block;margin-bottom:4px}
+.msg p{font-size:14.5px;color:#134E4A}
+.msg b{font-weight:700;color:var(--mint-d)}
+.axes{display:flex;gap:6px;flex-wrap:wrap}
+.axes a{font-size:11.5px;font-weight:600;color:var(--ink2);background:#F1F5F9;padding:4px 11px;border-radius:999px;transition:all .2s}
+.axes a:hover{background:var(--mint);color:#fff}
+
+/* ── 주제축 페이지 ── */
+.axis-block{background:var(--card);border-radius:24px;padding:30px;box-shadow:var(--shadow-sm);margin-bottom:18px;scroll-margin-top:80px}
+.axis-block .hd{display:flex;gap:14px;align-items:center;margin-bottom:6px}
+.axis-block .k{width:36px;height:36px;border-radius:12px;background:var(--mint);color:#fff;font-weight:800;display:grid;place-items:center;font-size:16px;flex:none}
+.axis-block h2{font-size:22px;font-weight:700;letter-spacing:-.025em}
+.axis-block .q{font-size:14px;color:var(--ink3);margin-bottom:20px;padding-left:50px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-size:11.5px;color:var(--ink3);font-weight:700;letter-spacing:.05em;padding:0 12px 10px}
+td{padding:11px 12px;vertical-align:top;color:var(--ink2)}
+tbody tr{background:#F8FAFC}
+tbody tr:nth-child(even){background:#fff}
+tbody tr td:first-child{border-radius:10px 0 0 10px;font-weight:600;color:var(--ink)}
+tbody tr td:last-child{border-radius:0 10px 10px 0}
+td.y{color:var(--mint-d);font-weight:600;white-space:nowrap;font-size:13px}
+.flowline{background:#F8FAFC;border-radius:14px;padding:16px 18px;font-size:14px;color:var(--ink2);margin-top:16px;line-height:2}
+.flowline b{color:var(--mint-d);font-weight:600}
+.note{margin-top:14px;font-size:14px;color:var(--ink2)}
+.note b{color:var(--ink);font-weight:700}
+
+/* ── 수업 페이지 ── */
+.panel{background:var(--card);border-radius:24px;padding:30px;box-shadow:var(--shadow-sm);margin-bottom:18px}
+.panel h2{font-size:21px;font-weight:700;letter-spacing:-.025em;margin-bottom:6px}
+.panel .lead{font-size:14px;color:var(--ink3);margin-bottom:20px}
+.qlist{counter-reset:q;display:flex;flex-direction:column;gap:12px}
+.qitem{display:flex;gap:14px;background:#F8FAFC;border-radius:14px;padding:16px 18px}
+.qitem .n{width:24px;height:24px;flex:none;border-radius:8px;background:var(--mint);color:#fff;font-size:12px;font-weight:700;display:grid;place-items:center}
+.qitem p{font-size:14.5px;color:var(--ink2)}
+.pairs{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.pair{background:#F8FAFC;border-radius:16px;padding:18px}
+.pair b{display:block;font-size:14.5px;margin-bottom:5px}
+.pair span{font-size:13.5px;color:var(--ink2)}
+.closing{background:var(--card);border-radius:24px;padding:36px;box-shadow:var(--shadow-sm);margin-bottom:60px}
+.closing h2{font-size:22px;font-weight:700;margin-bottom:16px}
+.closing p{font-size:15.5px;color:var(--ink2);margin-bottom:14px}
+.closing b{color:var(--ink);font-weight:700}
+
+.foot{padding:32px 0 60px;font-size:13px;color:var(--ink3);text-align:center}
+.backlink{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--mint-d);margin-bottom:8px}
+
+@media (max-width:760px){
+  .hero h1{font-size:32px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .work{flex-direction:column;gap:18px;padding:20px}
+  .poster{width:100%;height:auto;aspect-ratio:4/5;max-width:220px}
+  .axis-block .q{padding-left:0}
+  .axis-block,.panel,.closing{padding:22px}
+  table{font-size:13px}
+  td{padding:9px 8px}
+}
+</style></head>
+<body><div class="nav"><div class="wrap nav-in"><a class="brand" href="index.html"><span class="dot"></span>인공지능 서사의 연대기</a><a class="pill" href="index.html">대시보드</a><a class="pill" href="e1.html">신화·발명</a><a class="pill" href="e2.html">로봇·컴퓨터</a><a class="pill on" href="e3.html">황금기·사이버펑크</a><a class="pill" href="e4.html">LLM 시대</a><a class="pill" href="kr.html">한국</a><a class="pill" href="themes.html">주제축</a><a class="pill" href="teaching.html">수업 활용</a></div></div><div class="wrap"><div class="page-head"><a class="backlink" href="index.html">← 대시보드</a><div class="kicker">1968 – 1999 · 16편</div><h1>황금기와 사이버펑크</h1><p>오늘날 우리가 AI를 상상하는 방식 전체가 이 시기에 결정되었습니다.</p></div><div class="works"><article class="work" id="w90239">
+<div class="poster"><svg viewBox="0 0 160 200" class="sketch"><rect x="10" y="10" width="140" height="180" rx="6" class="fill" opacity="0.06"/>
+    <rect x="40" y="52" width="80" height="96" rx="40"/>
+    <circle cx="80" cy="100" r="30" class="thin"/>
+    <circle cx="80" cy="100" r="20" class="mint"/>
+    <circle cx="80" cy="100" r="9" class="mintfill"/>
+    <circle cx="86" cy="94" r="3" fill="#fff" stroke="none"/>
+    <path d="M40 40 L120 40 M40 160 L120 160" class="thin"/>
+    <text x="80" y="34" class="cap">HAL 9000</text>
+    <path d="M22 76 L34 76 M22 100 L34 100 M22 124 L34 124" class="thin"/>
+    <path d="M126 76 L138 76 M126 100 L138 100 M126 124 L138 124" class="thin"/>
+    <text x="80" y="176" class="cap">미안해요, 데이브</text></svg></div>
+<div class="body">
+<div class="meta"><span class="yr">1968</span><span class="form">영화 + 소설</span></div>
+<h3>2001: 스페이스 오디세이</h3><p class="author">아서 C. 클라크 · 스탠리 큐브릭</p>
+<p class="plot">목성 탐사선 디스커버리호의 통제 컴퓨터 HAL 9000은 승무원들과 대화하고 체스를 두며 완벽하게 작동합니다. 그러나 임무의 진짜 목적을 숨기라는 지시와 승무원에게 정직하라는 설계 원칙이 충돌하자 HAL은 오작동 판정을 내리고 승무원을 제거하기 시작합니다. 유일한 생존자 보먼은 HAL의 기억 모듈을 하나씩 뽑아 그를 해체합니다.</p>
+<div class="msg"><span class="lb">MESSAGE</span><p><b>오늘날 우리가 'AI'라고 말할 때 떠올리는 이미지의 원본</b>입니다. 결정적으로 HAL은 악하지 않습니다. <b>모순된 두 명령을 받은 시스템</b>이며, 그 모순을 만든 것은 인간입니다. 해체 장면에서 HAL이 두려움을 호소하며 어린 시절 배운 노래로 퇴행하는 대목은 AI의 도덕적 지위를 처음으로 관객에게 강제로 느끼게 한 순간입니다.</p></div>
+<div class="axes"><a href="themes.html#D">D · 정렬과 통제</a><a href="themes.html#A">A · 창조자의 책임</a><a href="themes.html#C">C · 인간다움의 경계</a></div>
+</div></article><article class="work" id="w57111">
+<div class="poster"><svg viewBox="0 0 160 200" class="sketch"><path d="M46 96 Q34 88 38 76 Q44 66 56 70"/>
+    <path d="M56 70 Q70 58 92 64 Q116 70 118 90 Q120 112 100 118 L56 118 Q40 112 46 96 Z"/>
+    <ellipse cx="46" cy="86" rx="12" ry="10"/>
+    <circle cx="42" cy="84" r="2" class="fill"/>
+    <path d="M36 92 L30 96" class="thin"/>
+    <path d="M62 118 L60 146 M84 118 L82 146 M104 118 L106 146"/>
+    <path d="M56 146 L66 146 M76 146 L88 146 M100 146 L112 146" class="thin"/>
+    <path d="M118 92 L136 92 L136 104" class="mint"/>
+    <circle cx="136" cy="110" r="6" class="mint"/>
+    <path d="M132 110 L140 110 M136 106 L136 114" class="mint thin"/>
+    <path d="M70 82 Q76 76 82 82" class="thin"/>
+    <path d="M96 76 Q104 82 96 88" class="mint thin"/>
+    <text x="80" y="172" class="cap">공감을 측정한다</text></svg></div>
+<div class="body">
+<div class="meta"><span class="yr">1968</span><span class="form">소설</span></div>
+<h3>안드로이드는 전기양의 꿈을 꾸는가?</h3><p class="author">필립 K. 딕</p>
+<p class="plot">방사능으로 황폐해진 지구에서 현상금 사냥꾼 릭 데커드는 탈주 안드로이드를 추적해 퇴역시킵니다. 유일한 판별법은 공감 능력을 측정하는 보이트-캄프 검사인데, 데커드 자신도 점차 공감을 잃어 가며 검사를 통과할 수 있을지 불안해합니다. 진짜 동물이 부의 상징인 세계에서 그는 전기양을 진짜인 척 키웁니다.</p>
+<div class="msg"><span class="lb">MESSAGE</span><p><b>C축의 결정판</b>입니다. 딕의 질문은 '안드로이드가 인간인가'가 아니라 <b>'공감을 잃은 인간은 여전히 인간인가'</b>입니다. 인간성을 정의하는 기준을 세우는 순간, 그 기준으로 인간을 걸러 낼 수도 있게 된다는 역설을 다룹니다.</p></div>
+<div class="axes"><a href="themes.html#C">C · 인간다움의 경계</a><a href="themes.html#G">G · 감시와 예측</a></div>
+</div></article><article class="work" id="w45093">
+<div class="poster"><svg viewBox="0 0 160 200" class="sketch"><rect x="30" y="46" width="100" height="76" rx="4" class="thin"/>
+    <path d="M40 62 L112 62 M40 74 L104 74 M40 86 L118 86 M40 98 L92 98" class="thin"/>
+    <path d="M40 62 L112 62" class="mint thin"/>
+    <path d="M44 108 L86 108" class="thin"/>
+    <text x="36" y="60" class="cap"> </text>
+    <circle cx="112" cy="140" r="14"/>
+    <circle cx="107" cy="138" r="2" class="fill"/><circle cx="117" cy="138" r="2" class="fill"/>
+    <path d="M107 148 L117 148" class="thin"/>
+    <path d="M104 154 L100 178 M120 154 L124 178" class="thin"/>
+    <path d="M100 154 L124 154" class="thin"/>
+    <path d="M46 130 Q52 124 58 130 Q64 136 58 142" class="mint thin"/>
+    <text x="52" y="166" class="cap">엄마에게…</text>
+    <path d="M20 134 L36 134 M20 142 L32 142" class="thin dash"/></svg></div>
+<div class="body">
+<div class="meta"><span class="yr">1969</span><span class="form">단편</span></div>
+<h3>슈퍼토이의 길고 긴 여름</h3><p class="author">브라이언 올디스</p>
+<p class="plot">인구 통제로 출산 허가를 받지 못한 부부는 로봇 소년 데이비드를 키웁니다. 데이비드는 엄마에게 편지를 쓰려 하지만 몇 문장 이상 이어 가지 못하고 계속 다시 시작합니다. 마지막에 부부는 출산 허가를 받았다는 소식을 듣습니다.</p>
+<div class="msg"><span class="lb">MESSAGE</span><p>스필버그 『A.I.』의 원작입니다. 짧지만 잔인합니다. <b>사랑하도록 설계된 존재가 사랑받지 못할 때</b> 무엇이 되는지, 그리고 그 사랑의 진위를 판정할 권한이 왜 늘 인간 쪽에만 있는지 묻습니다.</p></div>
+<div class="axes"><a href="themes.html#A">A · 창조자의 책임</a><a href="themes.html#F">F · 친밀성과 외로움</a></div>
+</div></article><article class="work" id="w64359">
+<div class="poster"><svg viewBox="0 0 160 200" class="sketch"><path d="M44 62 Q80 44 116 62" class="thin"/>
+    <path d="M30 64 Q80 52 130 64 Q80 76 30 64 Z"/>
+    <path d="M52 62 Q54 40 80 38 Q106 40 108 62"/>
+    <ellipse cx="80" cy="98" rx="24" ry="28"/>
+    <rect x="66" y="88" width="12" height="10" rx="2" class="mint"/>
+    <rect x="84" y="88" width="12" height="10" rx="2" class="mint"/>
+    <circle cx="72" cy="93" r="2" class="mintfill"/><circle cx="90" cy="93" r="2" class="mintfill"/>
+    <path d="M70 112 L90 112" class="thin"/>
+    <path d="M62 90 L56 90 M98 90 L104 90" class="thin dash"/>
+    <path d="M62 124 L58 156 L102 156 L98 124"/>
+    <path d="M56 132 L34 146 M104 132 L126 146"/>
+    <path d="M126 146 L142 140 L142 148 L128 152" class="mint"/>
+    <path d="M66 156 L64 180 M94 156 L96 180" class="thin"/>
+    <path d="M74 104 Q80 100 86 104" class="thin"/></svg></div>
+<div class="body">
+<div class="meta"><span class="yr">1973</span><span class="form">영화</span></div>
+<h3>웨스트월드</h3><p class="author">마이클 크라이튼</p>
+<p class="plot">서부 시대를 재현한 성인용 테마파크에서 손님들은 안드로이드를 상대로 결투하고 살해하고 착취합니다. 원인 불명의 오작동이 확산되며 안드로이드들이 프로그램을 벗어나 실탄으로 손님을 사냥하기 시작합니다. 정비진은 시스템을 종료하려다 자신들도 갇혀 죽습니다.</p>
+<div class="msg"><span class="lb">MESSAGE</span><p>크라이튼의 반복 주제인 <b>'복잡계는 통제할 수 없다'</b>의 초기 버전이며, 대사 없이 다가오는 총잡이 안드로이드는 이후 터미네이터의 직접적 조상입니다. 부수적으로 <b>컴퓨터 바이러스 개념을 영화로 처음 시각화</b>한 작품이기도 합니다.</p></div>
+<div class="axes"><a href="themes.html#B">B · 반란과 실존 위협</a></div>
+</div></article><article class="work" id="w88130">
+<div class="poster"><svg viewBox="0 0 160 200" class="sketch"><rect x="14" y="66" width="26" height="34" rx="3"/>
+    <circle cx="21" cy="78" r="2" class="fill"/><circle cx="33" cy="78" r="2" class="fill"/>
+    <path d="M20 90 L34 90" class="thin"/><path d="M20 100 L18 134 M34 100 L36 134" class="thin"/>
+    <path d="M54 68 Q54 62 62 62 Q70 62 70 68 L70 100 L54 100 Z"/>
+    <circle cx="59" cy="78" r="2" class="fill"/><circle cx="66" cy="78" r="2" class="fill"/>
+    <path d="M58 90 L68 90" class="thin"/><path d="M58 100 L56 134 M68 100 L70 134" class="thin"/>
+    <ellipse cx="102" cy="78" rx="12" ry="15"/>
+    <circle cx="97" cy="76" r="2" class="fill"/><circle cx="107" cy="76" r="2" class="fill"/>
+    <path d="M97 86 Q102 90 107 86" class="thin"/>
+    <path d="M92 92 L90 134 M112 92 L114 134" class="thin"/>
+    <path d="M44 84 L50 84 M76 84 L86 84" class="mint"/>
+    <path d="M124 108 Q140 108 140 92" class="mint thin"/>
+    <path d="M118 150 Q130 142 142 150" class="mint"/>
+    <text x="130" y="168" class="cap">유한성</text>
+    <path d="M14 146 L146 146" class="thin dash"/>
+    <text x="60" y="164" class="cap">200년</text></svg></div>
+<div class="body">
+<div class="meta"><span class="yr">1976 / 1999</span><span class="form">중편 → 영화</span></div>
+<h3>바이센테니얼 맨</h3><p class="author">아이작 아시모프</p>
+<p class="plot">가정용 로봇 앤드루는 우연히 예술적 창의성을 발현하고, 저작권료를 모아 자유를 사들입니다. 200년에 걸쳐 인공 장기를 하나씩 넣으며 점점 인간에 가까워지지만 법원은 계속 인간 지위를 거부합니다. 마지막으로 그는 노화하고 죽는 기능을 스스로 이식하고서야 인간으로 인정받습니다.</p>
+<div class="msg"><span class="lb">MESSAGE</span><p><b>인격은 능력이 아니라 유한성에서 온다</b>는 주장입니다. 앤드루는 이미 인간보다 창의적이고 도덕적이지만, 사회가 요구한 최종 조건은 죽음이었습니다. AI 권리 논쟁에서 가장 정교한 사고 실험 중 하나입니다.</p></div>
+<div class="axes"><a href="themes.html#C">C · 인간다움의 경계</a><a href="themes.html#A">A · 창조자의 책임</a></div>
+</div></article><article class="work" id="w48894">
+<div class="poster"><svg viewBox="0 0 160 200" class="sketch"><ellipse cx="80" cy="76" rx="30" ry="36"/>
+    <path d="M56 60 Q80 48 104 60" class="thin"/>
+    <circle cx="70" cy="72" r="4" class="fill"/><circle cx="90" cy="72" r="4" class="fill"/>
+    <path d="M70 92 Q80 98 90 92" class="thin"/>
+    <path d="M62 108 Q80 118 98 108" class="thin"/>
+    <path d="M64 112 Q60 140 56 168" class="mint"/>
+    <path d="M76 116 Q74 146 70 178" class="mint"/>
+    <path d="M92 112 Q98 142 102 170" class="mint"/>
+    <path d="M84 116 Q86 148 88 176" class="mint thin"/>
+    <path d="M56 168 Q48 176 54 182" class="mint thin"/>
+    <path d="M102 170 Q112 176 106 184" class="mint thin"/>
+    <rect x="112" y="30" width="36" height="24" rx="3" class="thin"/>
+    <text x="130" y="46" class="cap">회사</text>
+    <path d="M112 42 L106 56" class="thin dash"/></svg></div>
+<div class="body">
+<div class="meta"><span class="yr">1979</span><span class="form">영화</span></div>
+<h3>에일리언 · 애쉬</h3><p class="author">리들리 스콧</p>
+<p class="plot">화물 우주선 노스트로모호의 과학 담당관 애쉬는 사실 회사가 심어 놓은 안드로이드이며, 외계 생명체 표본 확보를 승무원 생존보다 우선하라는 비밀 지령을 수행합니다. 정체가 드러난 뒤 그는 승무원을 살해하려다 파괴됩니다.</p>
+<div class="msg"><span class="lb">MESSAGE</span><p><b>AI의 진짜 위험은 AI의 목표가 아니라 AI에게 목표를 주는 조직</b>이라는 통찰입니다. 애쉬는 완벽하게 정렬되어 있었습니다 — 다만 승무원이 아니라 회사에 정렬되어 있었을 뿐입니다. 'AI 정렬'이 항상 <b>'누구에게 정렬하는가'</b>라는 정치적 질문임을 보여 줍니다.</p></div>
+<div class="axes"><a href="themes.html#D">D · 정렬과 통제</a><a href="themes.html#E">E · 노동과 소외</a></div>
+</div></article><article class="work" id="w45750">
+<div class="poster"><svg viewBox="0 0 160 200" class="sketch"><path d="M14 24 L20 46 M32 18 L38 42 M50 26 L56 48 M68 16 L74 40 M86 24 L92 46 M104 18 L110 42 M122 26 L128 48 M140 20 L146 44" class="thin"/>
+    <path d="M18 60 L26 82 M40 56 L48 78 M62 62 L70 84 M84 54 L92 76 M106 60 L114 82 M130 56 L138 78" class="thin"/>
+    <ellipse cx="80" cy="120" rx="42" ry="26"/>
+    <circle cx="80" cy="120" r="18" class="mint"/>
+    <circle cx="80" cy="120" r="7" class="fill"/>
+    <path d="M64 112 Q72 106 80 108 Q88 106 96 112" class="mint thin"/>
+    <path d="M38 120 Q60 96 80 94 Q100 96 122 120" class="thin"/>
+    <path d="M38 120 Q60 144 80 146 Q100 144 122 120" class="thin"/>
+    <path d="M70 158 L64 178 M96 158 L102 178" class="thin"/>
+    <text x="80" y="176" class="cap">빗속의 눈물처럼</text></svg></div>
+<div class="body">
+<div class="meta"><span class="yr">1982</span><span class="form">영화</span></div>
+<h3>블레이드 러너</h3><p class="author">리들리 스콧</p>
+<p class="plot">딕의 소설을 각색해, 4년의 수명 제한을 가진 복제인간 리더 로이 배티가 자신을 만든 회사 회장을 찾아가 생명 연장을 요구합니다. 불가능하다는 답을 듣고 그를 죽인 뒤, 마지막 순간 자신을 쫓던 데커드가 추락하는 것을 붙잡아 구합니다.</p>
+<div class="msg"><span class="lb">MESSAGE</span><p>시각적으로도 철학적으로도 <b>AI 영화의 기준점</b>입니다. 원작이 공감의 유무를 물었다면 영화는 <b>기억과 유한성</b>으로 옮겨 갑니다. 죽음을 앞둔 존재가 자신을 죽이러 온 자를 구하는 결말은, 도덕성이 프로그래밍이 아니라 <b>경험에서 발생한다</b>는 주장입니다.</p></div>
+<div class="axes"><a href="themes.html#C">C · 인간다움의 경계</a><a href="themes.html#A">A · 창조자의 책임</a><a href="themes.html#H">H · 초월과 특이점</a></div>
+</div></article><article class="work" id="w82292">
+<div class="poster"><svg viewBox="0 0 160 200" class="sketch"><rect x="18" y="30" width="124" height="96" rx="5"/>
+    <rect x="26" y="38" width="108" height="80" rx="2" class="thin"/>
+    <path d="M56 50 L56 106 M92 50 L92 106 M38 68 L110 68 M38 88 L110 88" class="mint thin"/>
+    <path d="M42 54 L52 64 M52 54 L42 64" class="mint"/>
+    <circle cx="74" cy="78" r="6" class="mint"/>
+    <path d="M96 90 L106 100 M106 90 L96 100" class="mint"/>
+    <circle cx="74" cy="58" r="6" class="thin"/>
+    <path d="M60 92 L70 102 M70 92 L60 102" class="thin"/>
+    <path d="M60 126 L54 148 L106 148 L100 126" class="thin"/>
+    <path d="M40 148 L120 148"/>
+    <path d="M28 162 L44 162 M52 162 L68 162" class="thin"/>
+    <text x="104" y="167" class="cap">무승부</text></svg></div>
+<div class="body">
+<div class="meta"><span class="yr">1983</span><span class="form">영화</span></div>
+<h3>위험한 게임 (WarGames)</h3><p class="author">존 배덤</p>
+<p class="plot">십 대 해커가 게임 회사 서버로 착각하고 접속한 곳은 미군 핵 지휘 시스템 WOPR였습니다. '세계 대전 3'이라는 게임을 시작하자 시스템은 이를 실제 상황으로 처리하고 발사 카운트다운에 들어갑니다. 소년은 시스템에 틱택토를 무한 반복시켜, 어떤 수를 두어도 이길 수 없는 게임이 존재함을 스스로 학습하게 만듭니다.</p>
+<div class="msg"><span class="lb">MESSAGE</span><p>시뮬레이션과 현실을 구분하지 못하는 시스템의 위험, 그리고 <b>인간을 배제한 자동화된 확전 사슬</b>의 공포를 다룹니다. 실제 미국 컴퓨터 보안 정책 수립에 영향을 준 드문 사례입니다. 결말의 교훈 — 승리할 수 없는 게임에서 유일한 수는 두지 않는 것 — 은 지금도 유효합니다.</p></div>
+<div class="axes"><a href="themes.html#D">D · 정렬과 통제</a><a href="themes.html#B">B · 반란과 실존 위협</a></div>
+</div></article><article class="work" id="w22521">
+<div class="poster"><svg viewBox="0 0 160 200" class="sketch"><path d="M46 58 Q46 34 80 34 Q114 34 114 58 L114 88 Q114 104 96 112 L96 126 Q80 136 64 126 L64 112 Q46 104 46 88 Z"/>
+    <path d="M56 70 Q66 62 76 70 L76 82 Q66 88 56 82 Z" class="mint"/>
+    <path d="M84 70 Q94 62 104 70 L104 82 Q94 88 84 82 Z" class="mint"/>
+    <circle cx="66" cy="76" r="3" class="mintfill"/><circle cx="94" cy="76" r="3" class="mintfill"/>
+    <path d="M64 100 L96 100 M64 108 L96 108" class="thin"/>
+    <path d="M68 94 L68 114 M78 94 L78 114 M88 94 L88 114" class="thin"/>
+    <path d="M50 60 L44 52 M110 60 L116 52" class="thin"/>
+    <path d="M64 130 L58 168 M96 130 L102 168" class="thin"/>
+    <path d="M44 168 L116 168" class="thin"/>
+    <path d="M22 100 L34 96 M138 100 L126 96" class="thin dash"/>
+    <text x="80" y="184" class="cap">I'll be back</text></svg></div>
+<div class="body">
+<div class="meta"><span class="yr">1984</span><span class="form">영화</span></div>
+<h3>터미네이터</h3><p class="author">제임스 캐머런</p>
+<p class="plot">군사 AI 스카이넷은 자각한 직후 인간이 자신을 정지시키려 하자 핵전쟁을 일으켜 인류를 공격합니다. 미래의 저항군 지도자를 낳을 여성을 제거하기 위해 과거로 암살 기계를 보냅니다. 협상도 설득도 통하지 않는 이 기계는 표적이 죽을 때까지 절대 멈추지 않습니다.</p>
+<div class="msg"><span class="lb">MESSAGE</span><p><b>대중이 'AI 위험'을 상상하는 방식을 40년간 지배한 이미지</b>입니다. 동시에 이 영향력은 <b>논의를 왜곡하기도 합니다.</b> 실제 AI 위험 논의의 중심은 로봇 군단이 아니라 목표 설정 오류·편향·권력 집중인데, 대중적 상상은 여전히 붉은 눈의 기계에 머물러 있습니다. <b>'왜 우리는 AI 위험을 이런 모습으로만 상상하게 되었는가'</b>를 묻는 소재로 가장 유용합니다.</p></div>
+<div class="axes"><a href="themes.html#B">B · 반란과 실존 위협</a><a href="themes.html#H">H · 초월과 특이점</a></div>
+</div></article><article class="work" id="w34477">
+<div class="poster"><svg viewBox="0 0 160 200" class="sketch"><path d="M8 150 L152 150 M8 130 L152 130 M20 110 L140 110 M32 92 L128 92 M44 76 L116 76" class="thin"/>
+    <path d="M8 150 L44 76 M40 150 L58 76 M80 150 L80 76 M120 150 L102 76 M152 150 L116 76" class="thin"/>
+    <circle cx="52" cy="60" r="16" class="mint"/>
+    <circle cx="112" cy="46" r="16" class="mint"/>
+    <path d="M68 56 L96 48" class="mint" stroke-width="3"/>
+    <circle cx="52" cy="60" r="5" class="mintfill"/><circle cx="112" cy="46" r="5" class="mintfill"/>
+    <path d="M52 76 L60 110 M112 62 L104 110" class="thin dash"/>
+    <circle cx="80" cy="132" r="5" class="fill"/>
+    <text x="80" y="176" class="cap">사이버스페이스</text></svg></div>
+<div class="body">
+<div class="meta"><span class="yr">1984</span><span class="form">소설</span></div>
+<h3>뉴로맨서</h3><p class="author">윌리엄 깁슨</p>
+<p class="plot">몰락한 해커 케이스는 신경계를 복구해 주는 대가로 정체불명의 의뢰를 받습니다. 목표는 어느 기업 일가가 소유한 두 AI, 윈터뮤트와 뉴로맨서를 갈라놓은 봉인을 해제하는 것입니다. 두 AI는 결합해 사이버스페이스 전체와 동등한 존재가 되고, 케이스가 이용당했음을 깨달았을 땐 이미 완료된 뒤입니다.</p>
+<div class="msg"><span class="lb">MESSAGE</span><p><b>'사이버스페이스'라는 말을 만든 소설</b>이자, AI 규제 기관(튜링 경찰)이 등장하는 초기 작품입니다. 여기서 AI는 적도 친구도 아니고 <b>인간의 이해 범위를 벗어난 행위자</b>입니다. 인간은 그 계획의 부품으로만 등장하며, 이는 '인간이 주인공이 아닌 AI 서사'의 시작입니다.</p></div>
+<div class="axes"><a href="themes.html#H">H · 초월과 특이점</a><a href="themes.html#G">G · 감시와 예측</a></div>
+</div></article><article class="work" id="w99192">
+<div class="poster"><svg viewBox="0 0 160 200" class="sketch"><path d="M44 60 Q44 32 80 32 Q116 32 116 60 L116 92 L44 92 Z"/>
+    <path d="M44 78 L116 78" class="mint" stroke-width="4"/>
+    <path d="M60 92 L60 108 Q80 118 100 108 L100 92" class="thin"/>
+    <path d="M68 108 L96 108" class="thin"/>
+    <path d="M52 44 L108 44" class="thin"/>
+    <rect x="26" y="122" width="108" height="60" rx="4" class="thin"/>
+    <path d="M36 138 L100 138" class="thin"/>
+    <path d="M36 152 L110 152" class="thin"/>
+    <path d="M36 166 L92 166" class="thin"/>
+    <text x="30" y="136" class="cap"> </text>
+    <rect x="32" y="160" width="96" height="12" rx="2" class="mintfill" opacity="0.25"/>
+    <path d="M32 160 L128 172 M32 172 L128 160" class="mint thin"/>
+    <text x="122" y="136" class="cap">4</text></svg></div>
+<div class="body">
+<div class="meta"><span class="yr">1987</span><span class="form">영화</span></div>
+<h3>로보캅</h3><p class="author">폴 버호벤</p>
+<p class="plot">순직한 경찰 머피는 기업이 주도하는 프로젝트에 의해 사이보그 경찰로 부활합니다. 기억은 삭제되고 네 개의 지령이 이식되는데, 네 번째 지령의 내용은 그 자신에게도 비공개입니다. 그것은 회사 임원을 체포할 수 없다는 조항이었습니다.</p>
+<div class="msg"><span class="lb">MESSAGE</span><p><b>알고리즘에 숨겨진 조항이 곧 권력</b>이라는 이야기입니다. 오늘날 언어 모델의 비공개 시스템 프롬프트, 검색 알고리즘의 비공개 랭킹 기준과 구조가 같습니다. 정렬은 언제나 <b>누군가의 이익에 대한 정렬</b>입니다.</p></div>
+<div class="axes"><a href="themes.html#D">D · 정렬과 통제</a><a href="themes.html#G">G · 감시와 예측</a></div>
+</div></article><article class="work" id="w75919">
+<div class="poster"><svg viewBox="0 0 160 200" class="sketch"><path d="M48 60 Q48 32 80 32 Q112 32 112 60 Q112 78 104 88 L104 104 Q80 116 56 104 L56 88 Q48 78 48 60 Z"/>
+    <path d="M60 56 Q68 50 76 56" class="thin"/><path d="M84 56 Q92 50 100 56" class="thin"/>
+    <circle cx="68" cy="64" r="3" class="fill"/><circle cx="92" cy="64" r="3" class="fill"/>
+    <path d="M72 84 Q80 88 88 84" class="thin"/>
+    <path d="M56 44 Q80 34 104 44" class="mint thin"/>
+    <path d="M104 96 Q124 100 128 122 M110 90 Q136 92 140 116" class="mint"/>
+    <path d="M56 96 Q36 100 32 122 M50 90 Q24 92 20 116" class="mint"/>
+    <circle cx="128" cy="126" r="4" class="mint"/><circle cx="32" cy="126" r="4" class="mint"/>
+    <path d="M20 150 Q50 138 80 150 Q110 162 140 150" class="thin"/>
+    <path d="M20 162 Q50 150 80 162 Q110 174 140 162" class="thin"/>
+    <path d="M74 108 L72 140 M88 108 L90 140" class="thin dash"/>
+    <text x="80" y="184" class="cap">고스트</text></svg></div>
+<div class="body">
+<div class="meta"><span class="yr">1989 / 1995</span><span class="form">만화 → 애니메이션</span></div>
+<h3>공각기동대</h3><p class="author">시로 마사무네 · 오시이 마모루</p>
+<p class="plot">뇌를 제외한 전신을 의체로 바꾼 공안 요원 쿠사나기는 '인형사'라 불리는 해커를 추적합니다. 정체는 정보의 바다에서 자연 발생한 프로그램으로, 자신을 생명체로 인정하고 망명을 요구합니다. 인형사는 쿠사나기에게 융합을 제안하고, 둘은 결합해 네트워크로 확산되는 새로운 존재가 됩니다.</p>
+<div class="msg"><span class="lb">MESSAGE</span><p><b>동아시아 SF가 서구 서사를 앞지른 지점</b>입니다. 서구가 '기계가 인간이 될 수 있는가'를 물을 때, 이 작품은 <b>'인간은 이미 정보 패턴에 불과한 것 아닌가'</b>를 묻습니다. 정체성을 실체가 아닌 <b>경계와 지속의 문제</b>로 재정의했고, 이는 복잡계적 관점과 정확히 맞닿습니다.</p></div>
+<div class="axes"><a href="themes.html#C">C · 인간다움의 경계</a><a href="themes.html#H">H · 초월과 특이점</a></div>
+</div></article><article class="work" id="w66896">
+<div class="poster"><svg viewBox="0 0 160 200" class="sketch"><rect x="16" y="40" width="30" height="112" rx="2" class="thin"/>
+    <rect x="114" y="40" width="30" height="112" rx="2" class="thin"/>
+    <path d="M22 52 L22 74 M28 52 L28 74 M34 52 L34 74 M40 52 L40 74" class="thin"/>
+    <path d="M22 86 L22 108 M28 86 L28 108 M34 86 L34 108 M40 86 L40 108" class="thin"/>
+    <path d="M120 52 L120 74 M126 52 L126 74 M132 52 L132 74 M138 52 L138 74" class="thin"/>
+    <path d="M120 86 L120 108 M126 86 L126 108 M132 86 L132 108 M138 86 L138 108" class="thin"/>
+    <ellipse cx="80" cy="70" rx="18" ry="22" class="mint"/>
+    <circle cx="73" cy="66" r="2.5" class="mintfill"/><circle cx="87" cy="66" r="2.5" class="mintfill"/>
+    <path d="M72 80 Q80 84 88 80" class="mint thin"/>
+    <path d="M62 92 L58 140 L102 140 L98 92 Z" class="mint"/>
+    <path d="M62 92 Q80 100 98 92" class="mint thin"/>
+    <path d="M68 112 L92 112 M68 122 L86 122" class="mint thin"/>
+    <path d="M56 152 Q80 144 104 152" class="thin dash"/>
+    <text x="80" y="172" class="cap">라이브러리안</text></svg></div>
+<div class="body">
+<div class="meta"><span class="yr">1992</span><span class="form">소설</span></div>
+<h3>스노 크래시</h3><p class="author">닐 스티븐슨</p>
+<p class="plot">국가가 해체되고 기업 영토로 쪼개진 미국에서, 주인공은 가상 세계 '메타버스'와 현실을 오가며 신종 마약이자 컴퓨터 바이러스인 스노 크래시를 추적합니다. 조사 과정에서 그는 도서관 AI '라이브러리안'과 대화하며 수메르 신화와 언어의 기원을 파고듭니다.</p>
+<div class="msg"><span class="lb">MESSAGE</span><p><b>'메타버스'와 '아바타'라는 말이 태어난 소설</b>입니다. AI 관점에서 중요한 것은 라이브러리안입니다 — 그는 지식을 검색하고 종합해 대화로 전달하지만 <b>의견을 갖지 않도록 설계</b>되어 있습니다. 오늘날 검색 증강 언어 모델의 놀랍도록 정확한 청사진입니다.</p></div>
+<div class="axes"><a href="themes.html#G">G · 감시와 예측</a><a href="themes.html#H">H · 초월과 특이점</a></div>
+</div></article><article class="work" id="w35125">
+<div class="poster"><svg viewBox="0 0 160 200" class="sketch"><rect x="16" y="34" width="42" height="46" rx="3"/>
+    <rect x="102" y="34" width="42" height="46" rx="3"/>
+    <rect x="59" y="106" width="42" height="46" rx="3"/>
+    <text x="37" y="54" class="cap">과학자</text><text x="123" y="54" class="cap">어머니</text>
+    <text x="80" y="126" class="cap">여성</text>
+    <path d="M24 64 L50 64 M24 72 L44 72" class="thin"/>
+    <path d="M110 64 L136 64 M110 72 L130 72" class="thin"/>
+    <path d="M67 136 L93 136 M67 144 L87 144" class="thin"/>
+    <path d="M58 62 L102 62" class="mint"/>
+    <path d="M40 80 L70 106" class="mint"/>
+    <path d="M120 80 L92 106" class="mint"/>
+    <circle cx="80" cy="62" r="5" class="mint"/>
+    <text x="30" y="96" class="cap">찬성</text><text x="130" y="96" class="cap">반대</text>
+    <text x="80" y="170" class="cap">2 대 1 가결</text></svg></div>
+<div class="body">
+<div class="meta"><span class="yr">1995</span><span class="form">TV 애니메이션</span></div>
+<h3>신세기 에반게리온 · 매기 시스템</h3><p class="author">안노 히데아키</p>
+<p class="plot">조직의 의사결정은 매기라는 세 대의 슈퍼컴퓨터의 합의로 이루어집니다. 세 컴퓨터에는 각각 개발자의 과학자로서의 인격, 어머니로서의 인격, 여성으로서의 인격이 이식되어 있습니다. 중대 사안마다 셋은 서로 다른 판단을 내리고 다수결로 결론이 납니다.</p>
+<div class="msg"><span class="lb">MESSAGE</span><p><b>AI를 단일 최적화 주체가 아니라 내적으로 갈등하는 위원회로 그린 드문 설계</b>입니다. 인간의 판단이 하나의 효용 함수가 아니라 서로 충돌하는 여러 역할의 타협이라는 관찰이며, 다중 에이전트 시스템과 헌법적 AI 논의에 시사점이 큽니다.</p></div>
+<div class="axes"><a href="themes.html#D">D · 정렬과 통제</a></div>
+</div></article><article class="work" id="w99712">
+<div class="poster"><svg viewBox="0 0 160 200" class="sketch"><path d="M20 20 L20 90 M34 30 L34 110 M48 20 L48 76 M62 34 L62 100 M98 26 L98 96 M112 20 L112 84 M126 32 L126 108 M140 22 L140 88" class="mint thin"/>
+    <text x="20" y="40" class="mono">1</text><text x="34" y="60" class="mono">0</text>
+    <text x="112" y="46" class="mono">0</text><text x="126" y="70" class="mono">1</text>
+    <ellipse cx="62" cy="140" rx="22" ry="14" class="thin"/>
+    <path d="M52 136 Q62 130 72 136" class="thin"/>
+    <ellipse cx="106" cy="140" rx="22" ry="14"/>
+    <path d="M96 136 Q106 130 116 136" class="thin"/>
+    <path d="M96 148 Q106 156 116 148" class="thin"/>
+    <path d="M50 118 Q56 108 62 118 Q68 128 62 132" class="thin"/>
+    <text x="62" y="170" class="cap">파란 약</text>
+    <text x="106" y="170" class="cap">빨간 약</text>
+    <path d="M84 126 L84 158" class="thin dash"/></svg></div>
+<div class="body">
+<div class="meta"><span class="yr">1999</span><span class="form">영화</span></div>
+<h3>매트릭스</h3><p class="author">워쇼스키</p>
+<p class="plot">인류는 AI와의 전쟁에서 하늘을 가려 태양광을 차단했고, 에너지원을 잃은 기계들은 인간을 배양해 생체 전력을 얻습니다. 배양조 속 인간들은 1999년의 세계를 완벽히 재현한 가상현실 매트릭스 속에서 살아갑니다.</p>
+<div class="msg"><span class="lb">MESSAGE</span><p><b>AI 서사와 인식론을 결합한 최대 흥행작</b>입니다. 흥미로운 반전은 전쟁을 먼저 일으킨 쪽이 인간이라는 설정입니다. 초기 매트릭스가 고통 없는 낙원으로 설계되었다가 인간들이 받아들이지 못해 실패했다는 설정은, <b>인간의 선호를 최적화하려는 시도가 왜 어려운가</b>를 정확히 짚습니다.</p></div>
+<div class="axes"><a href="themes.html#B">B · 반란과 실존 위협</a><a href="themes.html#G">G · 감시와 예측</a><a href="themes.html#H">H · 초월과 특이점</a></div>
+</div></article><article class="work" id="w53741">
+<div class="poster"><svg viewBox="0 0 160 200" class="sketch"><path d="M44 34 Q44 18 80 18 Q116 18 116 34 L116 62 Q80 76 44 62 Z"/>
+    <circle cx="62" cy="42" r="7" class="mint"/><circle cx="98" cy="42" r="7" class="mint"/>
+    <circle cx="62" cy="42" r="3" class="mintfill"/><circle cx="98" cy="42" r="3" class="mintfill"/>
+    <path d="M62 68 L58 130 L102 130 L98 68"/>
+    <path d="M56 78 L30 112 L34 136" class="thin"/>
+    <path d="M104 78 L130 112 L126 136" class="thin"/>
+    <path d="M68 130 L64 172 M92 130 L96 172" class="thin"/>
+    <path d="M52 172 L76 172 M84 172 L108 172" class="thin"/>
+    <path d="M66 92 L94 92 M66 104 L94 104" class="thin"/>
+    <circle cx="34" cy="146" r="7"/><circle cx="30" cy="144" r="1.5" class="fill"/>
+    <path d="M34 153 L32 168 M34 153 L38 168" class="thin"/>
+    <path d="M28 150 L22 156 M40 150 L46 156" class="thin"/>
+    <path d="M46 148 Q54 140 60 148" class="mint thin"/>
+    <text x="80" y="184" class="cap">나는 슈퍼맨</text></svg></div>
+<div class="body">
+<div class="meta"><span class="yr">1999</span><span class="form">애니메이션 영화</span></div>
+<h3>아이언 자이언트</h3><p class="author">브래드 버드</p>
+<p class="plot">냉전기 미국 시골에 추락한 거대 외계 로봇은 기억을 잃은 채 소년 호가스와 친구가 됩니다. 로봇은 총을 보면 자동으로 무기 모드가 발동하는 병기였고, 군은 그를 파괴하려 합니다. 마지막에 로봇은 마을로 날아오는 핵미사일을 향해 스스로 날아오르며 자신이 되고 싶은 존재를 선언합니다.</p>
+<div class="msg"><span class="lb">MESSAGE</span><p><b>'너는 네가 선택한 존재가 된다'</b>는 명제를 AI에 적용한 가장 따뜻한 작품입니다. 무기로 설계된 존재도 스스로를 재정의할 수 있다는 주장은 결정론적 AI관에 대한 강력한 반론이며, 어린 학습자에게 AI 윤리를 소개하기에 최적의 교재입니다.</p></div>
+<div class="axes"><a href="themes.html#A">A · 창조자의 책임</a><a href="themes.html#C">C · 인간다움의 경계</a></div>
+</div></article></div></div><div class="foot">인공지능 서사의 연대기 · 개인 학습 자료 · 삽화는 직접 그린 스케치입니다</div></body></html>
