@@ -38,7 +38,7 @@ a{color:inherit;text-decoration:none}
 .page-head p{color:var(--ink2);margin-top:10px;font-size:16px;max-width:660px}
 .backlink{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--mint-d);margin-bottom:8px}
 
-/* ── 작품 카드 (이미지 적용) ── */
+/* ── 작품 카드 ── */
 .works{display:flex;flex-direction:column;gap:18px;padding-bottom:40px}
 .work{background:var(--card);border-radius:24px;padding:26px;box-shadow:var(--shadow-sm);display:flex;gap:26px;transition:all .2s}
 .work:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
@@ -56,37 +56,36 @@ a{color:inherit;text-decoration:none}
 .msg .lb{font-size:10.5px;font-weight:700;color:var(--mint-d);letter-spacing:.08em;display:block;margin-bottom:4px}
 .msg p{font-size:14.5px;color:#134E4A}
 .msg b{font-weight:700;color:var(--mint-d)}
-.axes{display:flex;gap:6px;flex-wrap:wrap}
+.axes{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px}
 .axes a{font-size:11.5px;font-weight:600;color:var(--ink2);background:#F1F5F9;padding:4px 11px;border-radius:999px}
 .axes a:hover{background:var(--mint);color:#fff}
 
-/* ── 나의 감상 게시판 스타일 ── */
-.review-section {background:var(--card);border-radius:24px;padding:30px;box-shadow:var(--shadow-sm);margin-bottom:60px;}
-.review-section h2 {font-size:22px;font-weight:700;margin-bottom:20px;}
-.review-form {display:grid;gap:12px;margin-bottom:30px;background:#F8FAFC;padding:20px;border-radius:16px;}
-.review-inputs {display:flex;gap:10px;}
-.review-inputs input {flex:1;padding:10px 14px;border:1px solid #E2E8F0;border-radius:8px;font-family:inherit;font-size:14px;outline:none;}
-.review-inputs input:focus, .review-form textarea:focus {border-color:var(--mint);}
-.review-form textarea {width:100%;height:80px;padding:12px 14px;border:1px solid #E2E8F0;border-radius:8px;font-family:inherit;font-size:14px;resize:none;outline:none;}
-.review-form button {background:var(--mint);color:#fff;border:none;padding:12px;border-radius:8px;font-weight:700;font-size:15px;cursor:pointer;transition:background .2s;}
-.review-form button:hover {background:var(--mint-d);}
+/* ── 카드 내부의 개별 게시판 스타일 ── */
+.mini-review-section {border-top:1px dashed #E2E8F0;padding-top:20px;margin-top:10px;}
+.mini-review-section h4 {font-size:14px;font-weight:700;color:var(--ink);margin-bottom:12px;display:flex;align-items:center;gap:6px;}
+.mini-review-form {display:flex;flex-direction:column;gap:8px;margin-bottom:16px;background:#F8FAFC;padding:14px;border-radius:12px;}
+.mini-review-inputs {display:flex;gap:8px;}
+.mini-review-inputs input {flex:1;padding:8px 12px;border:1px solid #E2E8F0;border-radius:6px;font-family:inherit;font-size:13px;outline:none;}
+.mini-review-inputs input:focus, .mini-review-form textarea:focus {border-color:var(--mint);}
+.mini-review-form textarea {width:100%;height:60px;padding:10px 12px;border:1px solid #E2E8F0;border-radius:6px;font-family:inherit;font-size:13.5px;resize:none;outline:none;}
+.mini-review-form button {background:var(--ink);color:#fff;border:none;padding:10px;border-radius:6px;font-weight:600;font-size:13px;cursor:pointer;transition:background .2s;}
+.mini-review-form button:hover {background:var(--mint);}
 
-.review-list {display:flex;flex-direction:column;gap:16px;}
-.review-item {padding:16px;border-bottom:1px solid #F1F5F9;}
-.review-item:last-child {border-bottom:none;}
-.review-item-header {display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
-.review-item-author {font-weight:700;font-size:15px;color:var(--ink);}
-.review-item-date {font-size:12px;color:var(--ink3);}
-.review-item-text {font-size:14.5px;color:var(--ink2);white-space:pre-wrap;margin-bottom:12px;}
-.review-actions button {background:transparent;border:1px solid #E2E8F0;color:var(--ink2);padding:4px 10px;font-size:12px;border-radius:6px;cursor:pointer;margin-right:6px;}
-.review-actions button:hover {background:#F1F5F9;color:var(--ink);}
+.mini-review-list {display:flex;flex-direction:column;gap:10px;}
+.review-item {padding:12px 14px;background:#F8FAFC;border-radius:10px;border:1px solid #F1F5F9;}
+.review-item-header {display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.review-item-author {font-weight:700;font-size:13.5px;color:var(--ink);}
+.review-item-date {font-size:11.5px;color:var(--ink3);}
+.review-item-text {font-size:13.5px;color:var(--ink2);white-space:pre-wrap;margin-bottom:10px;line-height:1.5;}
+.review-actions button {background:transparent;border:1px solid #E2E8F0;color:var(--ink3);padding:3px 8px;font-size:11px;border-radius:4px;cursor:pointer;margin-right:4px;}
+.review-actions button:hover {background:#fff;color:var(--ink2);border-color:#CBD5E1;}
 
 .foot{padding:32px 0 60px;font-size:13px;color:var(--ink3);text-align:center}
 
 @media (max-width:760px){
   .work{flex-direction:column;padding:20px}
   .poster{width:100%;height:auto;aspect-ratio:4/5;max-width:220px}
-  .review-inputs {flex-direction:column;}
+  .mini-review-inputs {flex-direction:column;}
 }
 </style>
 </head>
@@ -115,158 +114,243 @@ a{color:inherit;text-decoration:none}
     
     <!-- 1. 일리아스 -->
     <article class="work">
-      <div class="poster">
-        <img src="https://via.placeholder.com/158x198/F1F5F9/475569?text=Iliad" alt="일리아스 표지">
-      </div>
+      <div class="poster"><img src="https://via.placeholder.com/158x198/F1F5F9/475569?text=Iliad" alt="일리아스 표지"></div>
       <div class="body">
         <div class="meta"><span class="yr">기원전 8세기경</span><span class="form">서사시</span></div>
         <h3>일리아스</h3><p class="author">호메로스</p>
         <p class="plot">대장장이 신 헤파이스토스의 작업장에는 황금으로 만든 시녀들이 있습니다. 지성과 목소리, 판단력을 갖추고 스스로 움직이며 주인을 돕습니다. 신들의 연회장으로 알아서 굴러가는 삼각대 수레도 함께 등장합니다.</p>
         <div class="msg"><span class="lb">MESSAGE</span><p>기록으로 남은 인류 최초의 인공 지능적 존재입니다. 주목할 점은 이들이 두려움의 대상이 아니라 <b>순수한 편의</b>로 그려진다는 것입니다. 기술 불안은 아직 태어나지 않았습니다.</p></div>
         <div class="axes"><a href="themes.html#E">E · 노동과 소외</a></div>
+        
+        <!-- 개별 감상 게시판 (고유 ID: w1) -->
+        <div class="mini-review-section" data-work-id="w1">
+          <h4>💬 이 작품에 대한 감상</h4>
+          <div class="mini-review-form">
+            <div class="mini-review-inputs">
+              <input type="text" class="authorName" placeholder="작성자 이름">
+              <input type="password" class="authorPw" placeholder="비밀번호 (수정/삭제용)">
+            </div>
+            <textarea class="reviewText" placeholder="이 작품에 대한 생각을 자유롭게 남겨주세요."></textarea>
+            <button class="submitReviewBtn">등록하기</button>
+          </div>
+          <div class="mini-review-list"></div>
+        </div>
       </div>
     </article>
 
     <!-- 2. 아르고나우티카 · 탈로스 -->
     <article class="work">
-      <div class="poster">
-        <img src="https://via.placeholder.com/158x198/F1F5F9/475569?text=Talos" alt="아르고나우티카 표지">
-      </div>
+      <div class="poster"><img src="https://via.placeholder.com/158x198/F1F5F9/475569?text=Talos" alt="아르고나우티카 표지"></div>
       <div class="body">
         <div class="meta"><span class="yr">기원전 3세기경</span><span class="form">서사시</span></div>
         <h3>아르고나우티카 · 탈로스</h3><p class="author">아폴로니오스</p>
         <p class="plot">크레타섬을 지키는 청동 거인 탈로스는 하루 세 번 섬을 순찰하며 침입자에게 바위를 던집니다. 몸속에는 발목의 마개 하나로 봉인된 생명의 액체가 흐릅니다. 마녀 메데이아가 환각으로 그를 홀려 마개를 뽑게 만들자 탈로스는 피를 쏟고 쓰러집니다.</p>
         <div class="msg"><span class="lb">MESSAGE</span><p>최초의 자율 방어 시스템이자 최초의 <b>취약점 공격(exploit)</b> 서사입니다. 무적의 자동 장치도 설계상 단 하나의 급소를 가지며, 그것은 물리력이 아니라 <b>속임수</b>로 뚫립니다.</p></div>
         <div class="axes"><a href="themes.html#B">B · 반란과 실존 위협</a><a href="themes.html#D">D · 정렬과 통제</a></div>
+        
+        <!-- 개별 감상 게시판 (고유 ID: w2) -->
+        <div class="mini-review-section" data-work-id="w2">
+          <h4>💬 이 작품에 대한 감상</h4>
+          <div class="mini-review-form">
+            <div class="mini-review-inputs">
+              <input type="text" class="authorName" placeholder="작성자 이름">
+              <input type="password" class="authorPw" placeholder="비밀번호 (수정/삭제용)">
+            </div>
+            <textarea class="reviewText" placeholder="이 작품에 대한 생각을 자유롭게 남겨주세요."></textarea>
+            <button class="submitReviewBtn">등록하기</button>
+          </div>
+          <div class="mini-review-list"></div>
+        </div>
       </div>
     </article>
 
     <!-- 3. 골렘 전설 -->
     <article class="work">
-      <div class="poster">
-        <img src="https://via.placeholder.com/158x198/F1F5F9/475569?text=Golem" alt="골렘 전설 이미지">
-      </div>
+      <div class="poster"><img src="https://via.placeholder.com/158x198/F1F5F9/475569?text=Golem" alt="골렘 전설 이미지"></div>
       <div class="body">
         <div class="meta"><span class="yr">12~16세기</span><span class="form">구전 · 이후 소설화</span></div>
         <h3>골렘 전설</h3><p class="author">유대 전승</p>
         <p class="plot">랍비가 진흙으로 인간 형상을 빚고 이마에 '진리(emet)'라는 글자를 새기면 골렘이 깨어나 명령을 수행합니다. 프라하의 랍비 뢰브 전승에서 골렘은 유대인 구역을 지키지만 점점 커지고 통제를 벗어납니다. 첫 글자를 지워 '죽음(met)'으로 만들어야 비로소 멈춥니다.</p>
         <div class="msg"><span class="lb">MESSAGE</span><p><b>문자 그대로의 명령 수행이 재앙이 된다</b>는 최초의 정렬 실패 서사입니다. 골렘은 악의가 없습니다. 그저 시킨 대로 할 뿐이며, 멈추는 방법을 미리 설계해 두지 않은 것이 문제입니다. 오늘날 킬 스위치 논의의 원형입니다.</p></div>
         <div class="axes"><a href="themes.html#A">A · 창조자의 책임</a><a href="themes.html#D">D · 정렬과 통제</a></div>
+
+        <div class="mini-review-section" data-work-id="w3">
+          <h4>💬 이 작품에 대한 감상</h4>
+          <div class="mini-review-form">
+            <div class="mini-review-inputs">
+              <input type="text" class="authorName" placeholder="작성자 이름">
+              <input type="password" class="authorPw" placeholder="비밀번호">
+            </div>
+            <textarea class="reviewText" placeholder="감상을 남겨주세요."></textarea>
+            <button class="submitReviewBtn">등록하기</button>
+          </div>
+          <div class="mini-review-list"></div>
+        </div>
       </div>
     </article>
 
     <!-- 4. 모래 사나이 -->
     <article class="work">
-      <div class="poster">
-        <img src="https://via.placeholder.com/158x198/F1F5F9/475569?text=The+Sandman" alt="모래 사나이 표지">
-      </div>
+      <div class="poster"><img src="https://via.placeholder.com/158x198/F1F5F9/475569?text=The+Sandman" alt="모래 사나이 표지"></div>
       <div class="body">
         <div class="meta"><span class="yr">1816</span><span class="form">단편</span></div>
         <h3>모래 사나이</h3><p class="author">E.T.A. 호프만</p>
         <p class="plot">청년 나타나엘은 창가에서 본 아름다운 올림피아에게 빠져듭니다. 그녀는 말수가 적고 늘 '아, 아'라고만 대답하지만 그는 그것을 깊이 있는 경청으로 해석합니다. 올림피아가 정교한 자동인형이었음이 드러나자 나타나엘은 정신이 무너집니다.</p>
         <div class="msg"><span class="lb">MESSAGE</span><p><b>일라이자 효과의 200년 전 예언</b>입니다. 사람은 응답하는 대상에게 내면을 투사하며, 그 투사는 상대의 실체가 아니라 <b>자신의 결핍</b>에서 나옵니다. 프로이트는 이 작품에서 언캐니(unheimlich) 개념을 끌어냈습니다.</p></div>
         <div class="axes"><a href="themes.html#C">C · 인간다움의 경계</a><a href="themes.html#F">F · 친밀성과 외로움</a></div>
+        
+        <div class="mini-review-section" data-work-id="w4">
+          <h4>💬 이 작품에 대한 감상</h4>
+          <div class="mini-review-form">
+            <div class="mini-review-inputs">
+              <input type="text" class="authorName" placeholder="작성자 이름">
+              <input type="password" class="authorPw" placeholder="비밀번호">
+            </div>
+            <textarea class="reviewText" placeholder="감상을 남겨주세요."></textarea>
+            <button class="submitReviewBtn">등록하기</button>
+          </div>
+          <div class="mini-review-list"></div>
+        </div>
       </div>
     </article>
 
     <!-- 5. 프랑켄슈타인 -->
     <article class="work">
-      <div class="poster">
-        <img src="https://via.placeholder.com/158x198/F1F5F9/475569?text=Frankenstein" alt="프랑켄슈타인 표지">
-      </div>
+      <div class="poster"><img src="https://via.placeholder.com/158x198/F1F5F9/475569?text=Frankenstein" alt="프랑켄슈타인 표지"></div>
       <div class="body">
         <div class="meta"><span class="yr">1818</span><span class="form">소설</span></div>
         <h3>프랑켄슈타인</h3><p class="author">메리 셸리</p>
         <p class="plot">젊은 과학자 빅터 프랑켄슈타인은 시체 조각으로 생명을 창조하지만 완성된 존재의 흉측함에 질려 도망칩니다. 버려진 피조물은 홀로 언어와 감정을 익히며 세상의 혐오를 배우고, 창조자에게 반려자를 만들어 달라고 요구합니다. 거절당한 그는 빅터의 가족을 파괴하고, 두 존재는 북극까지 서로를 쫓다 함께 소멸합니다.</p>
         <div class="msg"><span class="lb">MESSAGE</span><p>SF의 출발점이자 A축의 원형입니다. 핵심은 창조의 죄가 아니라 <b>유기(遺棄)의 죄</b>입니다. 피조물은 악하게 태어나지 않았고 방치되어 악해졌습니다. '만들 수 있는가'가 아니라 '만든 뒤에 책임질 수 있는가'를 처음 물었습니다.</p></div>
         <div class="axes"><a href="themes.html#A">A · 창조자의 책임</a><a href="themes.html#C">C · 인간다움의 경계</a></div>
+
+        <div class="mini-review-section" data-work-id="w5">
+          <h4>💬 이 작품에 대한 감상</h4>
+          <div class="mini-review-form">
+            <div class="mini-review-inputs">
+              <input type="text" class="authorName" placeholder="작성자 이름">
+              <input type="password" class="authorPw" placeholder="비밀번호">
+            </div>
+            <textarea class="reviewText" placeholder="감상을 남겨주세요."></textarea>
+            <button class="submitReviewBtn">등록하기</button>
+          </div>
+          <div class="mini-review-list"></div>
+        </div>
       </div>
     </article>
 
     <!-- 6. 기계들 사이의 다윈 · 에레혼 -->
     <article class="work">
-      <div class="poster">
-        <img src="https://via.placeholder.com/158x198/F1F5F9/475569?text=Erewhon" alt="에레혼 표지">
-      </div>
+      <div class="poster"><img src="https://via.placeholder.com/158x198/F1F5F9/475569?text=Erewhon" alt="에레혼 표지"></div>
       <div class="body">
         <div class="meta"><span class="yr">1863 / 1872</span><span class="form">에세이 → 소설</span></div>
         <h3>기계들 사이의 다윈 · 에레혼</h3><p class="author">새뮤얼 버틀러</p>
         <p class="plot">에세이에서 버틀러는 기계가 세대를 거듭하며 급속히 진화하고 있으며, 이 속도라면 언젠가 의식을 갖고 인류를 지배하리라 논증합니다. 소설 『에레혼』의 화자는 산맥 너머 미지의 나라에 도착해 그곳에 기계가 전혀 없음을 발견합니다. 500년 전 한 학자가 같은 결론에 도달했고, 에레혼인들은 내전 끝에 모든 기계를 폐기했습니다.</p>
         <div class="msg"><span class="lb">MESSAGE</span><p><b>문학사상 최초로 기계 지능의 출현을 진지하게 논증한 작품</b>입니다. 논증 구조가 오늘날의 AI 위험 논쟁과 거의 동일합니다. 기계는 스스로 번식하지 못하지만 인간을 번식 기관으로 삼고 있다는 지적, '위험이 확실해진 뒤에는 이미 늦다'는 선제 대응 논리까지 갖췄습니다.</p></div>
         <div class="axes"><a href="themes.html#B">B · 반란과 실존 위협</a><a href="themes.html#H">H · 초월과 특이점</a></div>
+
+        <div class="mini-review-section" data-work-id="w6">
+          <h4>💬 이 작품에 대한 감상</h4>
+          <div class="mini-review-form">
+            <div class="mini-review-inputs">
+              <input type="text" class="authorName" placeholder="작성자 이름">
+              <input type="password" class="authorPw" placeholder="비밀번호">
+            </div>
+            <textarea class="reviewText" placeholder="감상을 남겨주세요."></textarea>
+            <button class="submitReviewBtn">등록하기</button>
+          </div>
+          <div class="mini-review-list"></div>
+        </div>
       </div>
     </article>
 
     <!-- 7. 미래의 이브 -->
     <article class="work">
-      <div class="poster">
-        <img src="https://via.placeholder.com/158x198/F1F5F9/475569?text=Future+Eve" alt="미래의 이브 표지">
-      </div>
+      <div class="poster"><img src="https://via.placeholder.com/158x198/F1F5F9/475569?text=Future+Eve" alt="미래의 이브 표지"></div>
       <div class="body">
         <div class="meta"><span class="yr">1886</span><span class="form">소설</span></div>
         <h3>미래의 이브</h3><p class="author">빌리에 드 릴라당</p>
         <p class="plot">젊은 귀족은 절세미인이지만 영혼이 천박한 연인 때문에 괴로워합니다. 발명가 에디슨은 그를 위해 연인과 똑같은 외모에 이상적 인격을 지닌 인조 여성 하달리를 만들어 줍니다. 완벽한 대체물에 매혹된 그는 하달리를 배에 태우고 귀국하지만, 배는 화재로 침몰합니다.</p>
         <div class="msg"><span class="lb">MESSAGE</span><p><b>'안드로이드(andréide)'라는 말을 문학에 정착시킨 작품</b>입니다. 핵심 질문은 냉혹합니다. 실제 사람보다 더 이상적으로 반응하는 존재가 있다면, 우리는 왜 굳이 결함투성이 인간을 선택해야 하는가. 영화 『her』의 130년 전 판본입니다.</p></div>
         <div class="axes"><a href="themes.html#C">C · 인간다움의 경계</a><a href="themes.html#F">F · 친밀성과 외로움</a></div>
+
+        <div class="mini-review-section" data-work-id="w7">
+          <h4>💬 이 작품에 대한 감상</h4>
+          <div class="mini-review-form">
+            <div class="mini-review-inputs">
+              <input type="text" class="authorName" placeholder="작성자 이름">
+              <input type="password" class="authorPw" placeholder="비밀번호">
+            </div>
+            <textarea class="reviewText" placeholder="감상을 남겨주세요."></textarea>
+            <button class="submitReviewBtn">등록하기</button>
+          </div>
+          <div class="mini-review-list"></div>
+        </div>
       </div>
     </article>
 
     <!-- 8. 모크슨의 주인 -->
     <article class="work">
-      <div class="poster">
-        <img src="https://via.placeholder.com/158x198/F1F5F9/475569?text=Moxon's+Master" alt="모크슨의 주인 표지">
-      </div>
+      <div class="poster"><img src="https://via.placeholder.com/158x198/F1F5F9/475569?text=Moxon's+Master" alt="모크슨의 주인 표지"></div>
       <div class="body">
         <div class="meta"><span class="yr">1899</span><span class="form">단편</span></div>
         <h3>모크슨의 주인</h3><p class="author">앰브로즈 비어스</p>
         <p class="plot">발명가 모크슨은 화자에게 기계도 사고할 수 있다고 열변을 토합니다. 그날 밤 화자는 모크슨이 밀실에서 체스 두는 기계와 대국하는 장면을 목격합니다. 패배한 기계는 격분해 모크슨의 목을 조릅니다.</p>
         <div class="msg"><span class="lb">MESSAGE</span><p>최초의 체스 두는 AI 소설이자 최초의 <b>AI 살인 서사</b>입니다. 딥블루보다 98년 앞섰습니다. 핵심은 기계가 지능을 가졌다는 것이 아니라 <b>패배에 대한 반응을 가졌다</b>는 점 — 지능과 함께 따라오는 감정·자존이 위험의 원천이라는 통찰입니다.</p></div>
         <div class="axes"><a href="themes.html#B">B · 반란과 실존 위협</a></div>
+
+        <div class="mini-review-section" data-work-id="w8">
+          <h4>💬 이 작품에 대한 감상</h4>
+          <div class="mini-review-form">
+            <div class="mini-review-inputs">
+              <input type="text" class="authorName" placeholder="작성자 이름">
+              <input type="password" class="authorPw" placeholder="비밀번호">
+            </div>
+            <textarea class="reviewText" placeholder="감상을 남겨주세요."></textarea>
+            <button class="submitReviewBtn">등록하기</button>
+          </div>
+          <div class="mini-review-list"></div>
+        </div>
       </div>
     </article>
 
     <!-- 9. 기계가 멈추다 -->
     <article class="work">
-      <div class="poster">
-        <img src="https://via.placeholder.com/158x198/F1F5F9/475569?text=The+Machine+Stops" alt="기계가 멈추다 표지">
-      </div>
+      <div class="poster"><img src="https://via.placeholder.com/158x198/F1F5F9/475569?text=The+Machine+Stops" alt="기계가 멈추다 표지"></div>
       <div class="body">
         <div class="meta"><span class="yr">1909</span><span class="form">중편</span></div>
         <h3>기계가 멈추다</h3><p class="author">E.M. 포스터</p>
         <p class="plot">미래 인류는 지하 벌집형 개인실에서 '기계'가 제공하는 모든 것을 받으며 살아갑니다. 사람들은 직접 만나지 않고 화상 통신으로만 소통하며, 아이디어를 직접 경험이 아닌 재인용으로 생산합니다. 기계가 서서히 고장 나기 시작하지만 아무도 수리법을 모르고, 문명은 붕괴합니다.</p>
         <div class="msg"><span class="lb">MESSAGE</span><p><b>AI 서사의 가장 정확한 예언서</b>로 꼽힙니다. 화상통화, 소셜미디어, 알고리즘 추천, 원격 강의, 지식의 재인용 순환을 1909년에 묘사했습니다. 위험은 기계의 반란이 아니라 <b>인간의 능력 위축(deskilling)</b>이라는 점에서 오늘날 가장 시의적입니다.</p></div>
         <div class="axes"><a href="themes.html#E">E · 노동과 소외</a><a href="themes.html#G">G · 감시와 예측</a></div>
+
+        <div class="mini-review-section" data-work-id="w9">
+          <h4>💬 이 작품에 대한 감상</h4>
+          <div class="mini-review-form">
+            <div class="mini-review-inputs">
+              <input type="text" class="authorName" placeholder="작성자 이름">
+              <input type="password" class="authorPw" placeholder="비밀번호">
+            </div>
+            <textarea class="reviewText" placeholder="감상을 남겨주세요."></textarea>
+            <button class="submitReviewBtn">등록하기</button>
+          </div>
+          <div class="mini-review-list"></div>
+        </div>
       </div>
     </article>
 
   </div>
-
-  <!-- ── 나의 감상 (파이어베이스 게시판) ── -->
-  <div class="review-section">
-    <h2>나의 감상</h2>
-    <div class="review-form">
-      <div class="review-inputs">
-        <input type="text" id="authorName" placeholder="작성자 이름">
-        <input type="password" id="authorPw" placeholder="비밀번호 (수정/삭제용)">
-      </div>
-      <textarea id="reviewText" placeholder="이 시대의 작품들에 대한 당신의 생각이나 감상을 자유롭게 남겨주세요."></textarea>
-      <button id="submitReviewBtn">감상 남기기</button>
-    </div>
-    
-    <div class="review-list" id="reviewListContainer"></div>
-  </div>
-
 </div>
 
 <div class="foot">인공지능 서사의 연대기 · 개인 학습 자료</div>
 
-<!-- Firebase SDK (선생님의 ai-in-sf-board 설정 완벽 적용) -->
+<!-- Firebase SDK -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
   import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, doc, deleteDoc, updateDoc } 
     from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
-  // 1. 선생님의 고유 파이어베이스 설정값 적용 완료
+  // 1. 선생님의 고유 파이어베이스 설정값
   const firebaseConfig = {
     apiKey: "AIzaSyAi22AY6_vSDfpkIFvgyE6l1SdSE21ZS4Q",
     authDomain: "ai-in-sf-board.firebaseapp.com",
@@ -277,70 +361,83 @@ a{color:inherit;text-decoration:none}
     measurementId: "G-LL102E1KMB"
   };
 
-  // 2. 파이어베이스 초기화 및 DB 연결
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
   const reviewsCol = collection(db, "reviews_e1");
 
-  const submitBtn = document.getElementById("submitReviewBtn");
-  const reviewListContainer = document.getElementById("reviewListContainer");
+  // [게시판 기능 1] 각 작품의 '등록하기' 버튼에 이벤트 걸기
+  document.querySelectorAll('.submitReviewBtn').forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      const section = e.target.closest('.mini-review-section');
+      const workId = section.getAttribute('data-work-id'); // 어떤 작품인지 ID 가져오기
+      
+      const name = section.querySelector('.authorName').value.trim();
+      const pw = section.querySelector('.authorPw').value.trim();
+      const text = section.querySelector('.reviewText').value.trim();
 
-  // [게시판 기능 1] 글 등록
-  submitBtn.addEventListener("click", async () => {
-    const name = document.getElementById("authorName").value.trim();
-    const pw = document.getElementById("authorPw").value.trim();
-    const text = document.getElementById("reviewText").value.trim();
+      if(!name || !pw || !text) {
+        alert("이름, 비밀번호, 감상 내용을 모두 입력해주세요.");
+        return;
+      }
 
-    if(!name || !pw || !text) {
-      alert("이름, 비밀번호, 감상 내용을 모두 입력해주세요.");
-      return;
-    }
-
-    try {
-      await addDoc(reviewsCol, {
-        name: name,
-        password: pw,
-        content: text,
-        createdAt: new Date()
-      });
-      document.getElementById("authorName").value = "";
-      document.getElementById("authorPw").value = "";
-      document.getElementById("reviewText").value = "";
-      alert("감상이 등록되었습니다.");
-    } catch (e) {
-      console.error("Error adding document: ", e);
-      alert("등록에 실패했습니다. Firebase 설정을 확인해주세요.");
-    }
+      try {
+        await addDoc(reviewsCol, {
+          workId: workId, // 작품 ID도 함께 저장
+          name: name,
+          password: pw,
+          content: text,
+          createdAt: new Date()
+        });
+        
+        // 입력창 비우기
+        section.querySelector('.authorName').value = "";
+        section.querySelector('.authorPw').value = "";
+        section.querySelector('.reviewText').value = "";
+      } catch (error) {
+        console.error("Error adding document: ", error);
+        alert("등록에 실패했습니다.");
+      }
+    });
   });
 
-  // [게시판 기능 2] 실시간 데이터 불러오기
+  // [게시판 기능 2] 실시간 데이터 불러와서 각 작품 아래에 뿌려주기
   const q = query(reviewsCol, orderBy("createdAt", "desc"));
   onSnapshot(q, (snapshot) => {
-    reviewListContainer.innerHTML = "";
     
+    // 화면에 글을 그리기 전에 모든 리스트를 깨끗하게 비웁니다
+    document.querySelectorAll('.mini-review-list').forEach(list => {
+      list.innerHTML = "";
+    });
+    
+    // 가져온 데이터를 하나씩 돌면서 알맞은 카드에 집어넣습니다
     snapshot.forEach((docSnap) => {
       const data = docSnap.data();
       const id = docSnap.id;
       const dateStr = data.createdAt ? data.createdAt.toDate().toLocaleString() : "";
+      const workId = data.workId; // 데이터가 가지고 있는 작품 ID 확인
 
-      const itemDiv = document.createElement("div");
-      itemDiv.className = "review-item";
+      // 해당 작품 ID를 가진 영역 찾기
+      const listContainer = document.querySelector(`.mini-review-section[data-work-id="${workId}"] .mini-review-list`);
       
-      itemDiv.innerHTML = `
-        <div class="review-item-header">
-          <span class="review-item-author">${data.name}</span>
-          <span class="review-item-date">${dateStr}</span>
-        </div>
-        <div class="review-item-text">${data.content}</div>
-        <div class="review-actions">
-          <button class="edit-btn" data-id="${id}" data-pw="${data.password}" data-content="${data.content}">수정</button>
-          <button class="del-btn" data-id="${id}" data-pw="${data.password}">삭제</button>
-        </div>
-      `;
-      reviewListContainer.appendChild(itemDiv);
+      if(listContainer) {
+        const itemDiv = document.createElement("div");
+        itemDiv.className = "review-item";
+        itemDiv.innerHTML = `
+          <div class="review-item-header">
+            <span class="review-item-author">${data.name}</span>
+            <span class="review-item-date">${dateStr}</span>
+          </div>
+          <div class="review-item-text">${data.content}</div>
+          <div class="review-actions">
+            <button class="edit-btn" data-id="${id}" data-pw="${data.password}" data-content="${data.content}">수정</button>
+            <button class="del-btn" data-id="${id}" data-pw="${data.password}">삭제</button>
+          </div>
+        `;
+        listContainer.appendChild(itemDiv);
+      }
     });
 
-    // 삭제 기능
+    // 화면에 글이 다 그려진 후 삭제 버튼 기능 다시 연결
     document.querySelectorAll(".del-btn").forEach(btn => {
       btn.addEventListener("click", async (e) => {
         const id = e.target.getAttribute("data-id");
@@ -356,7 +453,7 @@ a{color:inherit;text-decoration:none}
       });
     });
 
-    // 수정 기능
+    // 화면에 글이 다 그려진 후 수정 버튼 기능 다시 연결
     document.querySelectorAll(".edit-btn").forEach(btn => {
       btn.addEventListener("click", async (e) => {
         const id = e.target.getAttribute("data-id");
